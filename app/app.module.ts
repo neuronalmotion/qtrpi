@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { AppComponent }  from './app.component';
-import { HomeComponent } from './home.component';
-import { DownloadComponent } from './download.component';
+import { AppComponent }  from './app/app.component';
+import { HomeComponent } from './home/home.component';
+import { DownloadComponent } from './download/download.component';
 
 @NgModule({
   imports: [
