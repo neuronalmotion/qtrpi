@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent }  from './app/app.component';
 import { HomeComponent } from './home/home.component';
 import { DownloadComponent } from './download/download.component';
+import { DocumentationComponent } from './documentation/documentation.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,10 @@ import { DownloadComponent } from './download/download.component';
 			component: HomeComponent
 		},
 		{
+			path: 'documentation',
+			component: DocumentationComponent
+		},
+		{
 			path: 'download',
 			component: DownloadComponent
 		}
@@ -31,7 +36,8 @@ import { DownloadComponent } from './download/download.component';
   declarations: [ 
   	AppComponent,
   	HomeComponent,
-  	DownloadComponent
+  	DownloadComponent,
+  	DocumentationComponent
   ],
 
   bootstrap: [ AppComponent ]
