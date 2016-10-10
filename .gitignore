@@ -6,3 +6,8 @@ node_modules
 jspm_packages
 bower_components
 
+# Scripts ignores
+scripts/modules/
+scripts/raspbian/
+scripts/raspi/
+
