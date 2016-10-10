@@ -31,6 +31,9 @@ sudo umount /mnt
 sudo losetup -d /dev/loop0
 popd
 
+# Turn all the abolute symlinks and turn them into relative ones 
+./sysroot-relativelinks.py raspbian/sysroot
+
 # Retrieve qtbase source code (~440 Mo)
 mkdir modules
 pushd modules
