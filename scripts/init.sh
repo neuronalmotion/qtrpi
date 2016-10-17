@@ -17,8 +17,9 @@ sudo losetup -P /dev/loop0 *raspbian*.img
 sudo mount /dev/loop0p2 /mnt
 mkdir sysroot
 
-# We do not really all + root permission problem
-#sudo rsync -a /mnt/ sysroot/
+# We do not really need all this stuff
+# FIXME: root permission problem
+# sudo rsync -a /mnt/ sysroot/
 
 # Cherry-pick copy
 mkdir -p sysroot/lib sysroot/opt sysroot/usr/include sysroot/usr/lib
@@ -39,29 +40,3 @@ mkdir modules
 pushd modules
 git clone git://code.qt.io/qt/qtbase.git -b 5.7
 popd
-
-
-# Crosscompile qtbase
-export CROSS_COMPILE=`pwd`/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
-export SYSROOT=`pwd`/raspbian/sysroot
-export PWD=`pwd`
-
-cd modules/qtbase
-./configure -release -opengl es2 -device linux-rasp-pi2-g++ \
--device-option CROSS_COMPILE=$CROSS_COMPILE \
--sysroot $SYSROOT \
--opensource -confirm-license -make libs \
--prefix /usr/local/qt5pi \
--extprefix $PWD/raspi/qt5pi \
--hostprefix $PWD/raspi/qt5 \
--v
-
-popd
-
-# Prepare qemu
-sudo apt-get install qemu-user-static
-pushd raspbian
-mkdir -p sysroot/usr/bin
-sudo cp /usr/bin/qemu-arm-static sysroot/usr/bin
-popd
-
