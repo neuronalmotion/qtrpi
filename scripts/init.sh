@@ -1,5 +1,8 @@
 #!/bin/bash
 
+ROOT=${QTRPI_COMPILE_ROOT:-cross-compile}
+cd $ROOT
+
 # Get the toolchain (~600Mo)
 mkdir raspi
 pushd raspi
@@ -8,11 +11,11 @@ popd
 
 # Download and unzip the latest wheezy image (~1.4Go zipped)
 mkdir raspbian
-pushd raspbian 
+pushd raspbian
 wget --content-disposition https://downloads.raspberrypi.org/raspbian_latest
 unzip *raspbian*.zip
 
-# Mount and extract the raspbian sysroot 
+# Mount and extract the raspbian sysroot
 sudo losetup -P /dev/loop0 *raspbian*.img
 sudo mount /dev/loop0p2 /mnt
 mkdir sysroot
@@ -32,7 +35,7 @@ sudo umount /mnt
 sudo losetup -d /dev/loop0
 popd
 
-# Turn all the abolute symlinks and turn them into relative ones 
+# Turn all the abolute symlinks and turn them into relative ones
 ./sysroot-relativelinks.py raspbian/sysroot
 
 # Retrieve qtbase source code (~440 Mo)

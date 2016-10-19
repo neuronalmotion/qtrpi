@@ -1,7 +1,5 @@
 # X-Compile
-modules/
-raspbian/
-raspi/
+/cross-compile/
 
 # Ansible
 *.retry
