@@ -8,17 +8,25 @@
 * qtquickcontrols (qml/QtQuick)
 * qtquickcontrols2 (libQt5LabsControls, qml/Qt/labs)
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Getting started on your development machine
+Start by installing Ansible on your development machine:
+```bash
+sudo pip install ansible
+```
 
-## Code scaffolding
+After that, execute the following fab task to prepare your dev environment:
+```bash
+fab prepare_dev_environment
+```
 
+You should now be able to execute:
+```bash
+ng serve
+```
+And navigate to `http://localhost:42000
+```
+
+### Code scaffolding
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

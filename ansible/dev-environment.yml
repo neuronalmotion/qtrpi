@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  tasks:
+      - name: install node global packages
+        npm:
+            name: "{{ item.name }}"
+            global: yes
+            state: latest
+        with_items:
+            - name: angular-cli
+            - name: typescript
+
+      - name: install app packages
+        npm: path=../
+
+
