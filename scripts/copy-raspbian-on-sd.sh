@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT=${QTRPI_COMPILE_ROOT:-cross-compile}
+ROOT=${QTRPI_COMPILE_ROOT:-$(pwd)/cross-compile}
 cd $ROOT
 
 IMG=$(ls raspbian/*raspbian*.img)

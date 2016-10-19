@@ -1,21 +1,36 @@
 #!/bin/bash
 
-ROOT=${QTRPI_COMPILE_ROOT:-cross-compile}
-cd $ROOT
+function message() {
+    echo
+    echo '--------------------------------------------------------------------'
+    echo $1
+    echo '--------------------------------------------------------------------'
+}
+
+# Get absolute path of script dir for later execution
+# /!\ has to be executed *before* any "cd" command
+SCRIPT=$( readlink -m $( type -p $0 ))
+SCRIPT_DIR=`dirname ${SCRIPT}`
+
+ROOT=${QTRPI_COMPILE_ROOT:-$(pwd)/cross-compile}
+mkdir -p $ROOT ; cd $ROOT
 
 # Get the toolchain (~600Mo)
+message 'Downloading Raspberry Pi toolchain'
 mkdir raspi
 pushd raspi
 git clone https://github.com/raspberrypi/tools
 popd
 
 # Download and unzip the latest wheezy image (~1.4Go zipped)
+message 'Downloading Raspbian latest image'
 mkdir raspbian
 pushd raspbian
 wget --content-disposition https://downloads.raspberrypi.org/raspbian_latest
 unzip *raspbian*.zip
 
 # Mount and extract the raspbian sysroot
+message 'Creating sysroot'
 sudo losetup -P /dev/loop0 *raspbian*.img
 sudo mount /dev/loop0p2 /mnt
 mkdir sysroot
@@ -36,9 +51,11 @@ sudo losetup -d /dev/loop0
 popd
 
 # Turn all the abolute symlinks and turn them into relative ones
-./sysroot-relativelinks.py raspbian/sysroot
+message 'Updating symlinks to be relative'
+$SCRIPT_DIR/sysroot-relativelinks.py raspbian/sysroot
 
 # Retrieve qtbase source code (~440 Mo)
+message 'Retrieving Qt source code'
 mkdir modules
 pushd modules
 git clone git://code.qt.io/qt/qtbase.git -b 5.7

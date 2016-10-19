@@ -2,7 +2,7 @@
 
 ## Cross-compilation
 ### Environment prepararation
-You should export the environment variable `QTRPI_COMPILE_ROOT` to where you want to store the Qt RPi compile artefact. By default it will be expanded to `cross-compile` in the current directory.
+You should export the **absolute path** of the Qt RPi compilation output directory in the variable `QTRPI_COMPILE_ROOT`. By default it will be expanded to `cross-compile` in the current directory.
 
 TODO Add the procedure to prepare the cross-compile environment (using Ansible?)
 

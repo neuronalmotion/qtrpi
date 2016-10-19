@@ -5,9 +5,9 @@ cd $ROOT
 
 # Crosscompile qtbase
 CURRENT_DIR=$(pwd)
-export CROSS_COMPILE=$CURRENT_DIR/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
-export DIRROOT=$CURRENT_DIR
-export SYSROOT=$DIRROOT/raspbian/sysroot
+export CROSS_COMPILE=$ROOT/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
+export DIRROOT=$ROOT
+export SYSROOT=$ROOT/raspbian/sysroot
 
 cd modules/qtbase/examples/opengl/qopenglwidget
 
