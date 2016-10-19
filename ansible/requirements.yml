@@ -1,2 +1,1 @@
-- src: nodesource.node
-  #- src: bennojoy.nginx
+- src: jdauphant.nginx

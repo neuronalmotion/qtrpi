@@ -4,17 +4,25 @@
       doc_root: /srv/www/qt-rpi
 
   roles:
-      - nodesource.node
-
+      - role: jdauphant.nginx
+        nginx_http_params:
+            - access_log "/var/log/nginx/qtrpi.access.log"
+            - error_log "/var/log/nginx/qtrpi.error.log"
+        nginx_sites:
+            qtrpi:
+                - listen 80
+                - server_name qtrpi.neuronalmotion.com
+                - root {{ doc_root }}
+                - location / { try_files $uri $uri/ /index.html; }
   tasks:
-      - name: install dependencies
-        local_action: command ansible-galaxy install -r requirements.yml --ignore-errors
+      - name: compile project
+        local_action: command ng build --prod
 
-      - name: clone project to document root
-        git: repo=git@git.neuronalmotion.com:neuronalmotion/webapp-qt-rpi.git
-             dest={{ doc_root }}
-
-      - name: install project dependencies
-        npm: path={{ doc_root }}
+      - name: deploy project
+        synchronize:
+            src=../dist/
+            dest={{ doc_root }}
+            delete=yes
+            recursive=yes
 
 
