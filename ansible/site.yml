@@ -1,0 +1,20 @@
+---
+- hosts: 5.39.86.173
+  vars:
+      doc_root: /srv/www/qt-rpi
+
+  roles:
+      - nodesource.node
+
+  tasks:
+      - name: install dependencies
+        local_action: command ansible-galaxy install -r requirements.yml --ignore-errors
+
+      - name: clone project to document root
+        git: repo=git@git.neuronalmotion.com:neuronalmotion/webapp-qt-rpi.git
+             dest={{ doc_root }}
+
+      - name: install project dependencies
+        npm: path={{ doc_root }}
+
+

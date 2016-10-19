@@ -1,3 +1,4 @@
+# Angular 2
 typings
 system-config.js*
 app/**/*.js
@@ -6,8 +7,10 @@ node_modules
 jspm_packages
 bower_components
 
-# Scripts ignores
-scripts/modules/
-scripts/raspbian/
-scripts/raspi/
+# X-Compile
+modules/
+raspbian/
+raspi/
 
+# Ansible
+*.retry
