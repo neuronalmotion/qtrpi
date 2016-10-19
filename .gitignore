@@ -1,12 +1,3 @@
-# Angular 2
-typings
-system-config.js*
-app/**/*.js
-app/**/*.map
-node_modules
-jspm_packages
-bower_components
-
 # X-Compile
 modules/
 raspbian/
@@ -14,3 +5,36 @@ raspi/
 
 # Ansible
 *.retry
+
+# compiled output
+/dist
+/tmp
+
+# dependencies
+/node_modules
+/bower_components
+
+# IDEs and editors
+/.idea
+/.vscode
+.project
+.classpath
+*.launch
+.settings/
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+#System Files
+.DS_Store
+Thumbs.db
