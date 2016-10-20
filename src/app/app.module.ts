@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent }  from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DownloadComponent } from './download/download.component';
-import { DocumentationComponent } from './documentation/documentation.component';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   imports: [
@@ -23,8 +23,8 @@ import { DocumentationComponent } from './documentation/documentation.component'
 			component: HomeComponent
 		},
 		{
-			path: 'documentation',
-			component: DocumentationComponent
+			path: 'faq',
+			component: FaqComponent
 		},
 		{
 			path: 'download',
@@ -32,12 +32,12 @@ import { DocumentationComponent } from './documentation/documentation.component'
 		}
     ])
   ],
-  
-  declarations: [ 
+
+  declarations: [
   	AppComponent,
   	HomeComponent,
   	DownloadComponent,
-  	DocumentationComponent
+  	FaqComponent
   ],
 
   bootstrap: [ AppComponent ]
