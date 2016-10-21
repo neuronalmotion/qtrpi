@@ -11,7 +11,7 @@
         nginx_sites:
             qtrpi:
                 - listen 80
-                - server_name qtrpi.neuronalmotion.com
+                - server_name www.qtrpi.com
                 - root {{ doc_root }}
                 - location / { try_files $uri $uri/ /index.html; }
   tasks:
