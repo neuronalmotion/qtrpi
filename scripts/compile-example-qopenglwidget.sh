@@ -12,7 +12,7 @@ export SYSROOT=$ROOT/raspbian/sysroot
 cd modules/qtbase/examples/opengl/qopenglwidget
 
 # Generate the Makefile with qmake (from the host)
-$DIRROOT/raspi/qt5/bin/qmake
+$CURRENT_DIR/raspi/qt5/bin/qmake
 
 # Build the host tools
 make -j 10
