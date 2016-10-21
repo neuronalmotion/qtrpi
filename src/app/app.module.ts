@@ -7,6 +7,7 @@ import { AppComponent }  from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DownloadComponent } from './download/download.component';
 import { FaqComponent } from './faq/faq.component';
+import { DownloadQtComponent } from './download-qt/download-qt.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { FaqComponent } from './faq/faq.component';
   	AppComponent,
   	HomeComponent,
   	DownloadComponent,
-  	FaqComponent
+  	FaqComponent,
+  	DownloadQtComponent
   ],
 
   bootstrap: [ AppComponent ]
