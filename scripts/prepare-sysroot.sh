@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+# DO NOT START IT, COPY-PASTE ONLY WITH CAREFUL !
+exit
+
+
 sudo apt-get install qemu-user-static
 sudo cp /usr/bin/qemu-arm-static sysroot/usr/bin
 
@@ -33,3 +38,10 @@ sudo umount sysroot/proc
 
 
 sudo chown -R guillaume:guillaume sysroot
+
+
+# TODO on Rpi device:
+
+# Create /usr/local/qt5pi
+# sudo apt-get install libts-0.0-0
+# sudo apt-get install libinput5

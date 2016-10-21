@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: Edit qmake.conf with INCLUDEPATH... or qmake compilation will fail
+
 ROOT=${QTRPI_COMPILE_ROOT:-$(pwd)/cross-compile}
 
 # Crosscompile qtbase
