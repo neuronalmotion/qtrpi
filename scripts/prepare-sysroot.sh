@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Get absolute path of script dir for later execution
+# /!\ has to be executed *before* any "cd" command
+SCRIPT=$( readlink -m $( type -p $0 ))
+SCRIPT_DIR=`dirname ${SCRIPT}`
+
 ROOT=${QTRPI_COMPILE_ROOT:-$(pwd)/cross-compile}
 RPI_HOST=${1:-$QTRPI_HOST}
 
@@ -42,5 +47,7 @@ sudo umount sysroot/proc
 
 sudo chown -R $USER:$USER sysroot
 
-ssh $RPI_HOST sudo mkdir /usr/local/qt5pi
+$SCRIPT_DIR/sysroot-relativelinks.py sysroot
+
+ssh $RPI_HOST 'sudo mkdir /usr/local/qt5pi ; sudo chown -R pi:pi /usr/local/qt5pi'
 ssh $RPI_HOST sudo apt-get install -y libts-0.0-0 libinput5

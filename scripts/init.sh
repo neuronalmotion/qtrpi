@@ -7,11 +7,6 @@ function message() {
     echo '--------------------------------------------------------------------'
 }
 
-# Get absolute path of script dir for later execution
-# /!\ has to be executed *before* any "cd" command
-SCRIPT=$( readlink -m $( type -p $0 ))
-SCRIPT_DIR=`dirname ${SCRIPT}`
-
 ROOT=${QTRPI_COMPILE_ROOT:-$(pwd)/cross-compile}
 mkdir -p $ROOT ; cd $ROOT
 
@@ -47,10 +42,6 @@ sudo rsync -a /mnt/raspbian/ sysroot/
 sudo umount /mnt/raspbian
 sudo losetup -d /dev/loop0
 popd
-
-# Turn all the abolute symlinks and turn them into relative ones
-message 'Updating symlinks to be relative'
-$SCRIPT_DIR/sysroot-relativelinks.py raspbian/sysroot
 
 # Retrieve qtbase source code (~440 Mo)
 message 'Retrieving Qt source code'
