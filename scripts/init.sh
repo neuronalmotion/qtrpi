@@ -17,15 +17,13 @@ mkdir -p $ROOT ; cd $ROOT
 
 # Get the toolchain (~600Mo)
 message 'Downloading Raspberry Pi toolchain'
-mkdir raspi
-pushd raspi
+mkdir raspi ; pushd raspi
 git clone https://github.com/raspberrypi/tools
 popd
 
 # Download and unzip the latest wheezy image (~1.4Go zipped)
 message 'Downloading Raspbian latest image'
-mkdir raspbian
-pushd raspbian
+mkdir raspbian ; pushd raspbian
 wget --content-disposition https://downloads.raspberrypi.org/raspbian_latest
 unzip *raspbian*.zip
 
@@ -34,9 +32,9 @@ message 'Creating sysroot'
 sudo losetup -P /dev/loop0 *raspbian*.img
 sudo mkdir /mnt/raspbian
 sudo mount /dev/loop0p2 /mnt/raspbian
-mkdir sysroot
 
 # Copy all sysroot from .img
+mkdir sysroot
 sudo rsync -a /mnt/raspbian/ sysroot/
 
 # Cherry-pick copy
@@ -56,7 +54,6 @@ $SCRIPT_DIR/sysroot-relativelinks.py raspbian/sysroot
 
 # Retrieve qtbase source code (~440 Mo)
 message 'Retrieving Qt source code'
-mkdir modules
-pushd modules
+mkdir modules ; pushd modules
 git clone git://code.qt.io/qt/qtbase.git -b 5.7
 popd
