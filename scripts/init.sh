@@ -32,21 +32,21 @@ unzip *raspbian*.zip
 # Mount and extract the raspbian sysroot
 message 'Creating sysroot'
 sudo losetup -P /dev/loop0 *raspbian*.img
-sudo mount /dev/loop0p2 /mnt
+sudo mkdir /mnt/raspbian
+sudo mount /dev/loop0p2 /mnt/raspbian
 mkdir sysroot
 
-# We do not really need all this stuff
-# FIXME: root permission problem
-# sudo rsync -a /mnt/ sysroot/
+# Copy all sysroot from .img
+sudo rsync -a /mnt/raspbian/ sysroot/
 
 # Cherry-pick copy
-mkdir -p sysroot/lib sysroot/opt sysroot/usr/include sysroot/usr/lib
-cp -r /mnt/lib/ sysroot/
-cp -r /mnt/usr/include sysroot/usr/
-cp -r /mnt/usr/lib sysroot/usr/
-cp -r /mnt/opt/vc sysroot/opt/
+# mkdir -p sysroot/lib sysroot/opt sysroot/usr/include sysroot/usr/lib
+# cp -r /mnt/raspbian/lib/ sysroot/
+# cp -r /mnt/raspbian/usr/include sysroot/usr/
+# cp -r /mnt/raspbian/usr/lib sysroot/usr/
+# cp -r /mnt/raspbian/opt/vc sysroot/opt/
 
-sudo umount /mnt
+sudo umount /mnt/raspbian
 sudo losetup -d /dev/loop0
 popd
 

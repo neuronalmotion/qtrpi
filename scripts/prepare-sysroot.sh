@@ -21,6 +21,7 @@ sudo mount -o bind /sys sysroot/sys
 sudo chroot sysroot
 
 # Global update
+
 apt-get update
 apt-get dist-upgrade
 # Care with changelog and chromium waiting a key pres...
