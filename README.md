@@ -1,4 +1,4 @@
-# WebappQtRpi
+# qtrpi
 
 ## Cross-compilation
 ### Environment prepararation
@@ -13,26 +13,4 @@ TODO Add the procedure to prepare the cross-compile environment (using Ansible?)
 * qtdeclarative (bin/qml, bin/qmlscene, libQt5Qml, libQt5Quick, libQt5QuickParticles, libQt5QuickWidgets, ...)
 * qtquickcontrols (qml/QtQuick)
 * qtquickcontrols2 (libQt5LabsControls, qml/Qt/labs)
-
-## Getting started on your development machine
-Start by installing Ansible on your development machine:
-```bash
-sudo pip install ansible
-```
-
-After that, execute the following fab task to prepare your dev environment:
-```bash
-fab prepare_dev_environment
-```
-
-You should now be able to execute:
-```bash
-ng serve
-```
-And navigate to `http://localhost:42000
-```
-
-### Code scaffolding
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
-
 
