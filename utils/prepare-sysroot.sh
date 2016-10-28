@@ -33,5 +33,3 @@ sudo chown -R $USER:$USER sysroot
 
 $UTILS_DIR/sysroot-relativelinks.py sysroot
 
-ssh $RPI_HOST 'sudo mkdir /usr/local/qt5pi ; sudo chown -R pi:pi /usr/local/qt5pi'
-ssh $RPI_HOST sudo apt-get install -y libts-0.0-0 libinput5
