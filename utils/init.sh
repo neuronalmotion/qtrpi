@@ -1,14 +1,10 @@
 #!/bin/bash
 
-function message() {
-    echo
-    echo '--------------------------------------------------------------------'
-    echo $1
-    echo '--------------------------------------------------------------------'
-}
+source ${0%/*}/common.sh
 
-ROOT=${QTRPI_COMPILE_ROOT:-$(pwd)/cross-compile}
-mkdir -p $ROOT ; cd $ROOT
+sudo mkdir -p $ROOT
+sudo chown -R $USER:$USER $ROOT
+cd_root
 
 # Get the toolchain (~600Mo)
 message 'Downloading Raspberry Pi toolchain'

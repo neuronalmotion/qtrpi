@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ROOT=${QTRPI_COMPILE_ROOT:-cross-compile}
-cd $ROOT
+source ${0%/*}/common.sh
+cd_root
 
 # Crosscompile qtbase
 CURRENT_DIR=$(pwd)

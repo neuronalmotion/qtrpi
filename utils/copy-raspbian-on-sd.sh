@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ROOT=${QTRPI_COMPILE_ROOT:-$(pwd)/cross-compile}
-cd $ROOT
+source ${0%/*}/common.sh
+cd_root
 
 IMG=$(ls raspbian/*raspbian*.img)
 TARGET=/dev/sdd

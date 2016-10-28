@@ -1,8 +1,9 @@
 #!/bin/bash
 
-ROOT=${QTRPI_COMPILE_ROOT:-$(pwd)/cross-compile}
-RPI_HOST=${1:-$QTRPI_HOST}
+source ${0%/*}/common.sh
 OUTPUT_DIR=$ROOT/raspi/qt5pi
+
+cd_root
 
 # Crosscompile qtbase
 export CROSS_COMPILE=$ROOT/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
@@ -17,7 +18,7 @@ INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include/interface/vcos/pthreads
 INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include/interface/vmcs_host/linux
 EOL
 
-pushd $ROOT/modules/qtbase
+pushd modules/qtbase
 
 ./configure -release -opengl es2 -device linux-rasp-pi2-g++ \
     -device-option CROSS_COMPILE=$CROSS_COMPILE \

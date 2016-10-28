@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT=${QTRPI_COMPILE_ROOT:-$(pwd)/cross-compile}
+ROOT=${QTRPI_ROOT:-$(pwd)/cross-compile}
 OUTPUT_DIR=$ROOT/raspi/qt5pi
 
 function message() {

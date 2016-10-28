@@ -8,7 +8,7 @@ function message() {
 }
 
 message 'Create destination folders...'
-ROOT=${QTRPI_COMPILE_ROOT:-$(pwd)/cross-compile}
+ROOT=${QTRPI_ROOT:-$(pwd)/cross-compile}
 mkdir -p $ROOT ; cd $ROOT
 mkdir modules ; pushd modules
 
