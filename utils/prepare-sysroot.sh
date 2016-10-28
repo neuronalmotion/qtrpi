@@ -26,15 +26,6 @@ sudo sed -i '/./s/^/#/g' sysroot/etc/ld.so.preload
 # Uncomment deb-src to have access to dev packages
 sudo sed -i '/deb-src/s/^#//g' sysroot/etc/apt/sources.list
 
-# Global update
-
-# Enter the Matrix
-#sudo chroot sysroot
-# not needed
-#apt-get update
-#apt-get dist-upgrade
-# Care with changelog and chromium waiting a key pres...
-
 # Install Qt dependencies
 sudo chroot sysroot /bin/bash -c 'apt-get update'
 sudo chroot sysroot /bin/bash -c 'apt-get install -y apt-transport-https'
