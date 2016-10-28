@@ -1,25 +1,15 @@
 #!/bin/bash
 
-function message() {
-    echo
-    echo '--------------------------------------------------------------------'
-    echo $1
-    echo '--------------------------------------------------------------------'
-}
+source ${0%/*}/common.sh
+cd_root
 
-message 'Create destination folders...'
-ROOT=${QTRPI_ROOT:-$(pwd)/cross-compile}
-mkdir -p $ROOT ; cd $ROOT
+BRANCH='5.7'
+
+message 'Create destination directory...'
 mkdir modules ; pushd modules
 
-message 'Cloning qtdeclarative...'
-git clone git://code.qt.io/qt/qtdeclarative.git -b 5.7
+message 'Clone all modules...'
+for MODULE in qtbase qtdeclarative qt3d qtquickcontrols qtquickcontrols2; do
+    git clone git://code.qt.io/qt/$MODULE.git -b $BRANCH
+done
 
-message 'Cloning qt3d...'
-git clone git://code.qt.io/qt/qt3d.git -b 5.7
-
-message 'Cloning qtquickcontrols...'
-git clone git://code.qt.io/qt/qtquickcontrols.git -b 5.7
-
-message 'Cloning qtquickcontrols2...'
-git clone git://code.qt.io/qt/qtquickcontrols2.git -b 5.7

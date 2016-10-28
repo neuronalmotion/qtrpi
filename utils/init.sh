@@ -39,8 +39,3 @@ sudo umount /mnt/raspbian
 sudo losetup -d /dev/loop0
 popd
 
-# Retrieve qtbase source code (~440 Mo)
-message 'Retrieving Qt source code'
-mkdir modules ; pushd modules
-git clone git://code.qt.io/qt/qtbase.git -b 5.7
-popd
