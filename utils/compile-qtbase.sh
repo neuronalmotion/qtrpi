@@ -8,8 +8,6 @@ OUTPUT_DIR=$ROOT/raspi/qt5pi
 export CROSS_COMPILE=$ROOT/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
 export SYSROOT=$ROOT/raspbian/sysroot
 
-#pushd $ROOT/modules/qtbase
-
 # Add missing INCLUDEPATH in qmake conf
 QMAKE_FILE=mkspecs/devices/linux-rasp-pi2-g++/qmake.conf
 grep -q 'INCLUDEPATH' $QMAKE_FILE || cat>>$QMAKE_FILE << EOL
@@ -18,6 +16,8 @@ INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include/interface/vcos
 INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include/interface/vcos/pthreads
 INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include/interface/vmcs_host/linux
 EOL
+
+pushd $ROOT/modules/qtbase
 
 ./configure -release -opengl es2 -device linux-rasp-pi2-g++ \
     -device-option CROSS_COMPILE=$CROSS_COMPILE \
