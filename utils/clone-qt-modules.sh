@@ -6,7 +6,7 @@ cd_root
 BRANCH='5.7'
 
 message 'Create destination directory...'
-mkdir modules ; pushd modules
+mkdir modules ; cd modules
 
 message 'Clone all modules...'
 for MODULE in qtbase qtdeclarative qt3d qtquickcontrols qtquickcontrols2; do

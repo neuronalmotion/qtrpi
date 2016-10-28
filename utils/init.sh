@@ -6,7 +6,7 @@ sudo mkdir -p $ROOT
 sudo chown -R $USER:$USER $ROOT
 cd_root
 
-mkdir raspi raspbian sysroot bin
+mkdir raspi raspbian bin
 
 # Get the toolchain (~600Mo)
 message 'Downloading Raspberry Pi toolchain'
@@ -27,7 +27,8 @@ sudo mkdir /mnt/raspbian
 sudo mount /dev/loop0p2 /mnt/raspbian
 
 # Copy all sysroot from .img
-sudo rsync -a /mnt/raspbian/ sysroot/
+mkdir sysroot-full sysroot-minimal
+sudo rsync -a /mnt/raspbian/ sysroot-full/
 
 # Cherry-pick copy
 # mkdir -p sysroot/lib sysroot/opt sysroot/usr/include sysroot/usr/lib
@@ -38,5 +39,6 @@ sudo rsync -a /mnt/raspbian/ sysroot/
 
 sudo umount /mnt/raspbian
 sudo losetup -d /dev/loop0
+
 popd
 

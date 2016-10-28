@@ -1,18 +1,13 @@
-# Rename 'sysroot' to 'sysroot-full'
-# create a 'sysroot-minimal' and a 'sysroot' symbolic link on it
-mv /opt/qtrpi/raspbian/sysroot /opt/qtrpi/raspbian/sysroot-full
-mkdir /opt/qtrpi/raspbian/sysroot-minimal
-ln -s /opt/qtrpi/raspbian/sysroot-minimal /opt/qtrpi/raspbian/sysroot
+#!/bin/bash
 
-# Copy /lib
-mkdir -p /opt/qtrpi/raspbian/sysroot-minimal/lib
-rsync -a /opt/qtrpi/raspbian/sysroot-full/lib /opt/qtrpi/raspbian/sysroot-minimal
+source ${0%/*}/common.sh
+cd_root
 
-# Copy /usr/include and /usr/lib
-mkdir -p /opt/qtrpi/raspbian/sysroot-minimal/usr
-rsync -a /opt/qtrpi/raspbian/sysroot-full/usr/include /opt/qtrpi/raspbian/sysroot-minimal/usr
-rsync -a /opt/qtrpi/raspbian/sysroot-full/usr/lib /opt/qtrpi/raspbian/sysroot-minimal/usr
+SYSROOT_FULL_DIR=$ROOT/raspbian/sysroot-full
+SYSROOT_MINIMAL_DIR=$ROOT/raspbian/sysroot-minimal
 
-# Copy /opt/vc
-mkdir -p /opt/qtrpi/raspbian/sysroot-minimal/opt/vc/
-rsync -a /opt/qtrpi/raspbian/sysroot-full/opt/vc/ /opt/qtrpi/raspbian/sysroot-minimal/opt/vc/
+for DIR in lib 'usr/include' 'usr/lib' 'opt/vc'; do
+    mkdir -p $SYSROOT_MINIMAL_DIR/$DIR
+    rsync -av $SYSROOT_FULL_DIR/$DIR $SYSROOT_MINIMAL_DIR/$DIR
+done
+
