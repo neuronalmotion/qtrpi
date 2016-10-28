@@ -6,15 +6,17 @@ sudo mkdir -p $ROOT
 sudo chown -R $USER:$USER $ROOT
 cd_root
 
+mkdir raspi raspbian sysroot bin
+
 # Get the toolchain (~600Mo)
 message 'Downloading Raspberry Pi toolchain'
-mkdir raspi ; pushd raspi
+pushd raspi
 git clone https://github.com/raspberrypi/tools
 popd
 
 # Download and unzip the latest wheezy image (~1.4Go zipped)
 message 'Downloading Raspbian latest image'
-mkdir raspbian ; pushd raspbian
+pushd raspbian
 wget --content-disposition https://downloads.raspberrypi.org/raspbian_latest
 unzip *raspbian*.zip
 
@@ -25,7 +27,6 @@ sudo mkdir /mnt/raspbian
 sudo mount /dev/loop0p2 /mnt/raspbian
 
 # Copy all sysroot from .img
-mkdir sysroot
 sudo rsync -a /mnt/raspbian/ sysroot/
 
 # Cherry-pick copy

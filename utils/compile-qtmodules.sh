@@ -4,6 +4,7 @@ source ${0%/*}/common.sh
 cd_root
 
 OUTPUT_DIR=$ROOT/raspi/qt5pi
+OUTPUT_HOST_DIR=$ROOT/raspi/qt5
 
 function build_module() {
 	$ROOT/raspi/qt5/bin/qmake -r
@@ -31,10 +32,11 @@ EOL
         -opensource -confirm-license -make libs \
         -prefix /usr/local/qt5pi \
         -extprefix $OUTPUT_DIR \
-        -hostprefix $ROOT/raspi/qt5
+        -hostprefix $OUTPUT_HOST_DIR
 
     make -j 10
     make install
+    ln -sf $OUTPUT_HOST_DIR/bin/qmake $ROOT/bin/qmake-qtrpi
 }
 
 message 'Building qtbase...'
