@@ -6,6 +6,7 @@
 ###############################################################################
 
 ROOT=${QTRPI_ROOT-/opt/qtrpi}
+TARGET_DEVICE=${QTRPI_TARGET_DEVICE-"linux-rasp-pi2-g++"}
 RPI_HOST=$QTRPI_HOST
 
 # Get absolute path of script dir for later execution
