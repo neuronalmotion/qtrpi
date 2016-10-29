@@ -5,6 +5,6 @@ cd utils
 ./prepare-sysroot-full.sh
 ./prepare-sysroot-minimal.sh
 ./switch-sysroot.sh full
-./clone-qt-modules.sh
+./synchronize-qt-modules.sh
 ./compile-qt-modules.sh --clean-output --clean-modules-repo
 

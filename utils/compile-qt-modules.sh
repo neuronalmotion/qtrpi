@@ -18,12 +18,6 @@ Usage: $0 [options]
 EOF
 }
 
-function git_reset_repo_hard() {
-    git reset --hard HEAD
-    git clean -fd
-}
-
-
 function build_module() {
     if [[ $CLEAN_MODULES_REPO ]]; then
         git_reset_repo_hard

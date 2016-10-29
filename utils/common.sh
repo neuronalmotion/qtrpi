@@ -7,6 +7,7 @@
 
 ROOT=${QTRPI_ROOT-/opt/qtrpi}
 TARGET_DEVICE=${QTRPI_TARGET_DEVICE-"linux-rasp-pi2-g++"}
+QT_VERSION=${QTRPI_QT_VERSION-"5.7"}
 RPI_HOST=$QTRPI_HOST
 
 # Get absolute path of script dir for later execution
@@ -31,5 +32,10 @@ function cd_root() {
         exit_error "$ROOT directory does not exist. Please initialize it."
     fi
     cd $ROOT
+}
+
+function git_reset_repo_hard() {
+    git reset --hard HEAD
+    git clean -fd
 }
 
