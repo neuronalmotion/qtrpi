@@ -3,7 +3,7 @@
 source ${0%/*}/common.sh
 cd_root ; cd raspbian
 
-sudo apt-get install qemu-user-static
+sudo apt-get -y install qemu-user-static
 sudo cp /usr/bin/qemu-arm-static sysroot-full/usr/bin/
 
 # Mount sysroot-full part
