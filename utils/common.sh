@@ -6,9 +6,15 @@
 ###############################################################################
 
 ROOT=${QTRPI_ROOT-/opt/qtrpi}
-TARGET_DEVICE=${QTRPI_TARGET_DEVICE-"linux-rasp-pi2-g++"}
-QT_VERSION=${QTRPI_QT_VERSION-"5.7"}
+TARGET_DEVICE=${QTRPI_TARGET_DEVICE-'linux-rasp-pi2-g++'}
+QT_VERSION=${QTRPI_QT_VERSION-'5.7'}
 RPI_HOST=$QTRPI_HOST
+
+case $TARGET_DEVICE in
+    'linux-rasp-pi1-g++') DEVICE_NAME='rpi3' ;;
+    'linux-rasp-pi2-g++') DEVICE_NAME='rpi2' ;;
+    'linux-rpi3-g++') DEVICE_NAME='rpi3' ;;
+esac
 
 # Get absolute path of script dir for later execution
 # /!\ has to be executed *before* any "cd" command
