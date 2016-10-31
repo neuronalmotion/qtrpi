@@ -1,7 +1,8 @@
 #!/bin/bash
 
 cd utils
-./init.sh
+./init-common.sh
+./init-full.sh
 ./prepare-sysroot-full.sh
 ./prepare-sysroot-minimal.sh
 ./switch-sysroot.sh full
