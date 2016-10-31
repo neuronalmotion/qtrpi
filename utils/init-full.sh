@@ -1,10 +1,11 @@
 #!/bin/bash
 
 source ${0%/*}/common.sh
+cd_root
 
 # Download and unzip the latest wheezy image (~1.4Go zipped)
 message 'Downloading Raspbian latest image'
-pushd raspbian
+cd raspbian
 wget --content-disposition https://downloads.raspberrypi.org/raspbian_latest
 unzip *raspbian*.zip
 
@@ -27,6 +28,4 @@ sudo rsync -a /mnt/raspbian/ sysroot-full/
 
 sudo umount /mnt/raspbian
 sudo losetup -d /dev/loop0
-
-popd
 

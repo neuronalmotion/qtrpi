@@ -31,5 +31,3 @@ sudo umount sysroot-full/proc
 
 sudo chown -R $USER:$USER sysroot-full
 
-$UTILS_DIR/sysroot-relativelinks.py sysroot-full
-

@@ -15,7 +15,7 @@ cd $MODULES_DIR
 message 'Synchronize all modules...'
 for MODULE in qtbase qtdeclarative qt3d qtquickcontrols qtquickcontrols2; do
     if [[ ! -d $MODULE ]]; then
-        git clone git://code.qt.io/qt/$MODULE.git -b $BRANCH
+        git clone git://code.qt.io/qt/$MODULE.git
     fi
     pushd $MODULE
     git_reset_repo_hard
