@@ -9,12 +9,12 @@ For more information, go to http://www.qtrpi.com/.
 ### Environment variables
 * The root directory of the scripts is `/opt/qtrpi`. If you want the root to be somewhere else, just export the environment the variable `QTRPI_ROOT`.
 Note that if you do so, you have to rebuild everything from scratch. Some Qt paths are defined at compile time and cannot be updated afterwards.
-* `QTRPI_QT_VERSION`: version of Qt you want to work on`export QTRPI_QT_VERSION=5.7.2`.
-* `QTRPI_TARGET_VERSION`: target raspberry device of compilate. Today we support 3 values:
+* **`QTRPI_QT_VERSION`**: version of Qt you want to work on `export QTRPI_QT_VERSION=5.7.0`. Default is *5.7.0*
+* **`QTRPI_TARGET_VERSION`**: target raspberry device of compilate. Default is *linux-rasp-pi2-g++* Today we support 3 values:
   * `linux-rasp-pi-g++`
   * `linux-rasp-pi2-g++`
   * `linux-rpi3-g++`
-* `QTRPI_TARGET_HOST` with the IP address of your Raspberry Pi like so: `export QTRPI_TARGET_HOST=pi@1.2.3.4`.
+* **`QTRPI_TARGET_HOST`**: IP address of your Raspberry Pi (`export QTRPI_TARGET_HOST=pi@1.2.3.4`)
 
 ### Compiled modules
 * qtbase ((bin/qmake, bin/rcc, bin/uic, bin/moc, libQt5Core, libQt5Gui, ...)
