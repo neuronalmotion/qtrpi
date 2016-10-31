@@ -4,7 +4,7 @@ source ${0%/*}/common.sh
 cd_root
 
 MODULES_DIR='modules'
-BRANCH=$QT_VERSION
+TAG_NAME=$QT_VERSION
 
 if [ ! -d $MODULES_DIR ] ; then
     message "Create $MODULES_DIR directory..."
@@ -19,7 +19,7 @@ for MODULE in qtbase qtdeclarative qt3d qtquickcontrols qtquickcontrols2; do
     fi
     pushd $MODULE
     git_reset_repo_hard
-    git checkout $BRANCH
+    git checkout tags/v$TAG_NAME
     popd
 done
 
