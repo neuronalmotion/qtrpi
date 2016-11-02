@@ -11,7 +11,7 @@ QT_VERSION=${QTRPI_QT_VERSION-'5.7'}
 TARGET_HOST=$QTRPI_TARGET_HOST
 
 case $TARGET_DEVICE in
-    'linux-rasp-pi1-g++') DEVICE_NAME='rpi3' ;;
+    'linux-rasp-pi-g++') DEVICE_NAME='rpi1' ;;
     'linux-rasp-pi2-g++') DEVICE_NAME='rpi2' ;;
     'linux-rpi3-g++') DEVICE_NAME='rpi3' ;;
 esac
