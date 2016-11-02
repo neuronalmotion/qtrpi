@@ -3,18 +3,12 @@
 source ${0%/*}/common.sh
 cd_root
 
-# Crosscompile qtbase
-CURRENT_DIR=$(pwd)
+cd modules/qtbase/examples/opengl/qopenglwidget
+
 export CROSS_COMPILE=$ROOT/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
 export SYSROOT=$ROOT/raspbian/sysroot
 
-cd modules/qtbase/examples/opengl/qopenglwidget
+$ROOT/bin/qmake-qtrpi
 
-# Generate the Makefile with qmake (from the host)
-$ROOT/raspi/qt5/bin/qmake
-
-# Build the host tools
 make -j 10
-
-# Install the build files in the target folder
 make install
