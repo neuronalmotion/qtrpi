@@ -49,9 +49,8 @@ if [[ $PREPARE_RPI ]]; then
     ssh $TARGET_HOST "sudo sh -c 'rm /usr/lib/arm-linux-gnueabihf/libEGL.so.1.0.0 /usr/lib/arm-linux-gnueabihf/libGLESv2.so.2.0.0'"
     ssh $TARGET_HOST "sudo sh -c 'ln -sf /opt/vc/lib/libEGL.so /usr/lib/arm-linux-gnueabihf/libEGL.so.1.0.0'"
     ssh $TARGET_HOST "sudo sh -c 'ln -sf /opt/vc/lib/libGLESv2.so /usr/lib/arm-linux-gnueabihf/libGLESv2.so.2.0.0'"
-
-    ssh $TARGET_HOST 'sudo ldconfig'
 fi
 
 rsync -avz $OUTPUT_DIR $TARGET_HOST:/usr/local/
+ssh $TARGET_HOST 'sudo ldconfig'
 
