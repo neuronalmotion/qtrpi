@@ -28,22 +28,31 @@ function build_module() {
 	make install
 }
 
-function build_qtbase() {
-    export CROSS_COMPILE=$ROOT/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
-    export SYSROOT=$ROOT/raspbian/sysroot
+function fix_qmake() {
     QMAKE_FILE=mkspecs/devices/$TARGET_DEVICE/qmake.conf
 
-    if [[ $CLEAN_MODULES_REPO ]]; then
-        clean_git_and_compilation
-    fi
-
-    # Add missing INCLUDEPATH in qmake conf
-    grep -q 'INCLUDEPATH' $QMAKE_FILE || cat>>$QMAKE_FILE << EOL
+    if [[ $DEVICE_NAME == 'rpi2' ]]; then
+        # Add missing INCLUDEPATH in qmake conf
+        grep -q 'INCLUDEPATH' $QMAKE_FILE || cat>>$QMAKE_FILE << EOL
     INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include
     INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include/interface/vcos
     INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include/interface/vcos/pthreads
     INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include/interface/vmcs_host/linux
 EOL
+    elif [[ $DEVICE_NAME == 'rpi3' ]]; then
+        sed -i 's/\$\$QMAKE_CFLAGS -std=c++1z/\$\$QMAKE_CFLAGS -std=c++11/g' $QMAKE_FILE
+    fi
+}
+
+function build_qtbase() {
+    export CROSS_COMPILE=$ROOT/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
+    export SYSROOT=$ROOT/raspbian/sysroot
+
+    if [[ $CLEAN_MODULES_REPO ]]; then
+        clean_git_and_compilation
+    fi
+
+    fix_qmake
 
     ./configure -release -opengl es2 -device $TARGET_DEVICE \
         -device-option CROSS_COMPILE=$CROSS_COMPILE \
