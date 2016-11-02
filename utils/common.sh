@@ -40,8 +40,9 @@ function cd_root() {
     cd $ROOT
 }
 
-function git_reset_repo_hard() {
+function clean_git_and_compilation() {
     git reset --hard HEAD
     git clean -fd
+    make clean
 }
 

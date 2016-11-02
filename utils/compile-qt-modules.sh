@@ -20,7 +20,7 @@ EOF
 
 function build_module() {
     if [[ $CLEAN_MODULES_REPO ]]; then
-        git_reset_repo_hard
+        clean_git_and_compilation
     fi
 	$ROOT/raspi/qt5/bin/qmake -r
 
@@ -34,7 +34,7 @@ function build_qtbase() {
     QMAKE_FILE=mkspecs/devices/$TARGET_DEVICE/qmake.conf
 
     if [[ $CLEAN_MODULES_REPO ]]; then
-        git_reset_repo_hard
+        clean_git_and_compilation
     fi
 
     # Add missing INCLUDEPATH in qmake conf

@@ -18,7 +18,7 @@ for MODULE in qtbase qtdeclarative qt3d qtquickcontrols qtquickcontrols2; do
         git clone git://code.qt.io/qt/$MODULE.git
     fi
     pushd $MODULE
-    git_reset_repo_hard
+    clean_git_and_compilation
     git checkout tags/v$TAG_NAME
     popd
 done
