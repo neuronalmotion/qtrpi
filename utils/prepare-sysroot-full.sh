@@ -1,8 +1,29 @@
 #!/bin/bash
 
 source ${0%/*}/common.sh
-cd_root ; cd raspbian
+cd_root ; 
 
+mkdir -p raspbian ; cd raspbian
+
+# Mount and extract the raspbian sysroot
+message 'Creating sysroot'
+sudo losetup -P /dev/loop0 *raspbian*.img
+sudo mkdir /mnt/raspbian
+sudo mount /dev/loop0p2 /mnt/raspbian
+
+# Copy all sysroot from .img
+mkdir sysroot-full
+sudo rsync -a /mnt/raspbian/ sysroot-full/
+
+# Cherry-pick copy
+# mkdir -p sysroot/lib sysroot/opt sysroot/usr/include sysroot/usr/lib
+# cp -r /mnt/raspbian/lib/ sysroot/
+# cp -r /mnt/raspbian/usr/include sysroot/usr/
+# cp -r /mnt/raspbian/usr/lib sysroot/usr/
+# cp -r /mnt/raspbian/opt/vc sysroot/opt/
+
+sudo umount /mnt/raspbian
+sudo losetup -d /dev/loop0
 sudo apt-get -y install qemu-user-static
 sudo cp /usr/bin/qemu-arm-static sysroot-full/usr/bin/
 
@@ -30,4 +51,6 @@ sudo umount sysroot-full/dev
 sudo umount sysroot-full/proc
 
 sudo chown -R $USER:$USER sysroot-full
+
+$UTILS_DIR/sysroot-relativelinks.py sysroot-full
 

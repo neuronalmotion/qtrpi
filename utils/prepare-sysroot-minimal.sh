@@ -3,6 +3,7 @@
 source ${0%/*}/common.sh
 cd_root
 
+mkdir -p raspbian/sysroot-minimal
 SYSROOT_FULL_DIR=$ROOT/raspbian/sysroot-full
 SYSROOT_MINIMAL_DIR=$ROOT/raspbian/sysroot-minimal
 
