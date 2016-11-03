@@ -1,7 +1,7 @@
-# Modules
-* qtbase ((bin/qmake, bin/rcc, bin/uic, bin/moc, libQt5Core, libQt5Gui, ...)
-* qt3d (libQt53DCore, libQt53DInput, libQt53DQuick, ...)
-* qtcanvas3d (qml/QtCanvas3D, ...)
-* qtdeclarative (bin/qml, bin/qmlscene, libQt5Qml, libQt5Quick, libQt5QuickParticles, libQt5QuickWidgets, ...)
-* qtquickcontrols (qml/QtQuick)
-* qtquickcontrols2 (libQt5LabsControls, qml/Qt/labs)
+# qtrpi
+
+## Purpose
+Offer an easy-to-use environment to cross-compile Qt application on a Raspberry Pi. This repo contains all the scripts necessary to prepare a sysroot, cross-compile Qt and deploy Qt libraries to your Raspberry.
+
+For more information, go to http://www.qtrpi.com/faq.
+
