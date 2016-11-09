@@ -31,15 +31,15 @@ function build_module() {
 function fix_qmake() {
     QMAKE_FILE=mkspecs/devices/$TARGET_DEVICE/qmake.conf
 
-    if [[ $DEVICE_NAME == 'rpi2' ]]; then
-        # Add missing INCLUDEPATH in qmake conf
-        grep -q 'INCLUDEPATH' $QMAKE_FILE || cat>>$QMAKE_FILE << EOL
+    # Add missing INCLUDEPATH in qmake conf
+    grep -q 'INCLUDEPATH' $QMAKE_FILE || cat>>$QMAKE_FILE << EOL
     INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include
     INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include/interface/vcos
     INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include/interface/vcos/pthreads
     INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include/interface/vmcs_host/linux
 EOL
-    elif [[ $DEVICE_NAME == 'rpi3' ]]; then
+
+    if [[ $DEVICE_NAME == 'rpi3' ]]; then
         sed -i 's/\$\$QMAKE_CFLAGS -std=c++1z/\$\$QMAKE_CFLAGS -std=c++11/g' $QMAKE_FILE
     fi
 }
@@ -54,10 +54,17 @@ function build_qtbase() {
 
     fix_qmake
 
+    # GNU gold linker has issues with ARMv8
+    NO_USE_GOLD_LINKER=''
+    if [[ $DEVICE_NAME == 'rpi3' ]]; then
+        NO_USE_GOLD_LINKER='-no-use-gold-linker'
+    fi
+
     ./configure -release -opengl es2 -device $TARGET_DEVICE \
         -device-option CROSS_COMPILE=$CROSS_COMPILE \
         -sysroot $SYSROOT \
         -opensource -confirm-license -make libs \
+        $NO_USE_GOLD_LINKER \
         -prefix /usr/local/qt5pi \
         -extprefix $OUTPUT_DIR \
         -hostprefix $OUTPUT_HOST_DIR

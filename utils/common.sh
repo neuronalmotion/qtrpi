@@ -9,7 +9,7 @@ ROOT=${QTRPI_ROOT-/opt/qtrpi}
 TARGET_DEVICE=${QTRPI_TARGET_DEVICE-'linux-rasp-pi2-g++'}
 QT_VERSION=${QTRPI_QT_VERSION-'5.7.0'}
 TARGET_HOST=$QTRPI_TARGET_HOST
-VERSION='1.0.0'
+VERSION='1.1.0'
 
 case $TARGET_DEVICE in
     'linux-rasp-pi-g++') DEVICE_NAME='rpi1' ;;
