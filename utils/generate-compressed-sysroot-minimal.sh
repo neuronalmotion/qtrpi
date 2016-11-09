@@ -12,4 +12,4 @@ FILENAME=$(basename "$IMG")
 BASENAME=${FILENAME%%.*}
 
 message 'Compressing sysroot-minimal...'
-zip -r -q $ROOT/$BASE_DIR/qtrpi-sysroot-minimal-$BASENAME.zip raspbian/sysroot-minimal
+zip --symlinks -r -q $ROOT/$BASE_DIR/qtrpi-sysroot-minimal-$BASENAME.zip raspbian/sysroot-minimal
