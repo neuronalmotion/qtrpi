@@ -1,3 +1,7 @@
+v1.1.0 - 2016-11-09
+- Add support for RPi 1 & RPi 3
+- Add support of Qt 5.6.2
+
 v1.0.0 - 2016-11-03
 - Initial release with full and minimal scripts for RPi 2
 
