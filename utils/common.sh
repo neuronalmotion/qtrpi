@@ -9,6 +9,7 @@ ROOT=${QTRPI_ROOT-/opt/qtrpi}
 TARGET_DEVICE=${QTRPI_TARGET_DEVICE-'linux-rasp-pi2-g++'}
 QT_VERSION=${QTRPI_QT_VERSION-'5.7.0'}
 TARGET_HOST=$QTRPI_TARGET_HOST
+RASPBIAN_BASENAME='raspbian_latest'
 VERSION='1.1.0'
 
 case $TARGET_DEVICE in
@@ -21,6 +22,9 @@ esac
 # /!\ has to be executed *before* any "cd" command
 SCRIPT=$( readlink -m $( type -p $0 ))
 UTILS_DIR=`dirname ${SCRIPT}`
+
+# exclude new lines from array
+readarray -t QT_MODULES < $(realpath $UTILS_DIR/../)/qt-modules.txt
 
 function message() {
     echo
