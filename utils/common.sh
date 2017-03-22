@@ -23,6 +23,10 @@ esac
 SCRIPT=$( readlink -m $( type -p $0 ))
 UTILS_DIR=`dirname ${SCRIPT}`
 
+if [[ "$UTILS_DIR" != *utils ]]; then
+    UTILS_DIR="$UTILS_DIR/utils"
+fi
+
 # exclude new lines from array
 readarray -t QT_MODULES < $(realpath $UTILS_DIR/../)/qt-modules.txt
 
@@ -49,6 +53,7 @@ function clean_git_and_compilation() {
     git reset --hard HEAD
     git clean -fd
     make clean -j 10
+    make distclean -j 10
 }
 
 function qmake_cmd() {
