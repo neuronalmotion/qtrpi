@@ -52,6 +52,10 @@ fi
 cd $MODULES_DIR
 message 'Synchronize all modules...'
 for MODULE in "${QT_MODULES[@]}" ; do
+    if [[ $MODULE == \#* ]]; then
+        continue
+    fi
+
     if [[ ! -d $MODULE ]]; then
         git clone git://code.qt.io/qt/$MODULE.git
     fi

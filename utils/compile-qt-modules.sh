@@ -109,6 +109,10 @@ if [[ $CLEAN_OUTPUT ]]; then
 fi
 
 for MODULE in "${QT_MODULES[@]}" ; do
+    if [[ $MODULE == \#* ]]; then
+        continue
+    fi
+
     message "Build $MODULE..."
     pushd $ROOT/modules/$MODULE
 

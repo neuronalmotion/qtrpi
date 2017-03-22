@@ -48,6 +48,6 @@ function cd_root() {
 function clean_git_and_compilation() {
     git reset --hard HEAD
     git clean -fd
-    make clean
+    make clean -j 10
 }
 
