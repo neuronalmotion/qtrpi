@@ -51,3 +51,13 @@ function clean_git_and_compilation() {
     make clean -j 10
 }
 
+function qmake_cmd() {
+    LOG_FILE=${1-'default'}
+    $ROOT/raspi/qt5/bin/qmake -r |& tee $ROOT/logs/$LOG_FILE.log
+}
+
+function make_cmd() {
+    LOG_FILE=${1-'default'}
+    make -j 10 |& tee --append $ROOT/logs/$LOG_FILE.log
+}
+

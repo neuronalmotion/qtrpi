@@ -19,12 +19,13 @@ EOF
 }
 
 function build_module() {
+    MODULE=$1
     if [[ $CLEAN_MODULES_REPO ]]; then
         clean_git_and_compilation
     fi
-	$ROOT/raspi/qt5/bin/qmake -r
 
-	make -j 10
+    qmake_cmd $MODULE
+	make_cmd $MODULE
 	make install
 }
 
@@ -47,6 +48,7 @@ EOL
 function build_qtbase() {
     export CROSS_COMPILE=$ROOT/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
     export SYSROOT=$ROOT/raspbian/sysroot
+    MODULE='qtbase'
 
     if [[ $CLEAN_MODULES_REPO ]]; then
         clean_git_and_compilation
@@ -72,9 +74,10 @@ function build_qtbase() {
         -extprefix $OUTPUT_DIR \
         -hostprefix $OUTPUT_HOST_DIR \
         $NO_USE_GOLD_LINKER \
-        $NO_FEATURE_QML_NETWORK
+        $NO_FEATURE_QML_NETWORK \
+        |& tee $ROOT/logs/$MODULE.log
 
-    make -j 10
+    make_cmd $MODULE
     make install
     ln -sf $OUTPUT_HOST_DIR/bin/qmake $ROOT/bin/qmake-qtrpi
 }
@@ -124,7 +127,7 @@ for MODULE in "${QT_MODULES[@]}" ; do
     if [[ "$MODULE" == "qtbase" ]]; then
         build_qtbase
     else
-        build_module
+        build_module $MODULE
     fi
     popd
 done

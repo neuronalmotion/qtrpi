@@ -3,9 +3,14 @@
 source ${0%/*}/common.sh
 cd_root
 
-cd modules/qtbase/examples/opengl/qopenglwidget
+MODULE='qopenglwidget'
 
-$ROOT/bin/qmake-qtrpi
+message "Building module $MODULE"
 
-make -j 10
+cd modules/qtbase/examples/opengl/$MODULE
+
+qmake_cmd $MODULE
+
+make clean
+make_cmd $MODULE
 make install

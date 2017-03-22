@@ -14,7 +14,7 @@ sudo mkdir -p $ROOT
 sudo chown -R $USER:$USER $ROOT
 cd_root
 
-mkdir raspi raspbian bin
+mkdir raspi raspbian bin logs
 
 # Get the toolchain (~600Mo)
 message 'Downloading Raspberry Pi toolchain'
