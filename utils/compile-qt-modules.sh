@@ -108,15 +108,20 @@ if [[ $CLEAN_OUTPUT ]]; then
     rm -rf $OUTPUT_DIR/*
 fi
 
-message 'Build qtbase...'
-pushd $ROOT/modules/qtbase
-build_qtbase
-popd
+for MODULE in "${QT_MODULES[@]}" ; do
+    if [[ $MODULE == \#* ]]; then
+        continue
+    fi
 
-for MODULE in qtdeclarative qt3d qtquickcontrols qtquickcontrols2; do
     message "Build $MODULE..."
     pushd $ROOT/modules/$MODULE
-    build_module
+
+    if [[ "$MODULE" == "qtbase" ]]; then
+        build_qtbase
+    else
+        build_module
+    fi
     popd
 done
+
 

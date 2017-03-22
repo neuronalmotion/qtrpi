@@ -51,12 +51,17 @@ fi
 
 cd $MODULES_DIR
 message 'Synchronize all modules...'
-for MODULE in qtbase qtdeclarative qt3d qtquickcontrols qtquickcontrols2; do
+for MODULE in "${QT_MODULES[@]}" ; do
+    if [[ $MODULE == \#* ]]; then
+        continue
+    fi
+
     if [[ ! -d $MODULE ]]; then
         git clone git://code.qt.io/qt/$MODULE.git
     fi
     pushd $MODULE
     clean_git_and_compilation
+    git fetch origin
     git checkout tags/v$TAG_NAME
     popd
 done

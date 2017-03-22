@@ -1,0 +1,5 @@
+qtbase
+qtdeclarative
+qt3d
+qtquickcontrols
+qtquickcontrols2

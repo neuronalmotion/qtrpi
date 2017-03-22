@@ -3,7 +3,7 @@
 source ${0%/*}/common.sh
 cd_root
 
-IMG=$(ls raspbian/*raspbian*.img)
+IMG="raspbian/${RASPBIAN_BASENAME}.img"
 TARGET=$1
 
 echo "Copying $IMG to $TARGET..."
