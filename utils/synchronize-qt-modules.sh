@@ -60,7 +60,6 @@ for MODULE in "${QT_MODULES[@]}" ; do
         git clone git://code.qt.io/qt/$MODULE.git
     fi
     pushd $MODULE
-    clean_git_and_compilation
     git fetch origin
     git checkout tags/v$TAG_NAME
     popd
