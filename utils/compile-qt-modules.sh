@@ -60,14 +60,19 @@ function build_qtbase() {
         NO_USE_GOLD_LINKER='-no-use-gold-linker'
     fi
 
+    # Since Qt 5.8.0, qtdeclarative depends on the feature qml-network
+    # it's not working for now, we disable it :/
+    NO_FEATURE_QML_NETWORK='-no-feature-qml-network'
+
     ./configure -release -opengl es2 -device $TARGET_DEVICE \
         -device-option CROSS_COMPILE=$CROSS_COMPILE \
         -sysroot $SYSROOT \
         -opensource -confirm-license -make libs \
-        $NO_USE_GOLD_LINKER \
         -prefix /usr/local/qt5pi \
         -extprefix $OUTPUT_DIR \
-        -hostprefix $OUTPUT_HOST_DIR
+        -hostprefix $OUTPUT_HOST_DIR \
+        $NO_USE_GOLD_LINKER \
+        $NO_FEATURE_QML_NETWORK
 
     make -j 10
     make install
