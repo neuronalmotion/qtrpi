@@ -38,6 +38,7 @@ sudo chroot sysroot-full /bin/bash -c 'apt-get update'
 sudo chroot sysroot-full /bin/bash -c 'apt-get install -y apt-transport-https'
 sudo chroot sysroot-full /bin/bash -c 'apt-get build-dep -y qt4-x11 qtbase-opensource-src'
 sudo chroot sysroot-full /bin/bash -c 'apt-get install -y libudev-dev libinput-dev libts-dev libxcb-xinerama0-dev libxcb-xinerama0 libraspberrypi-dev'
+sudo chroot sysroot-full /bin/bash -c 'apt-get install -y libbluetooth-dev pi-bluetooth bluetooth bluez'
 
 sudo umount sysroot-full/sys
 sudo umount sysroot-full/dev
