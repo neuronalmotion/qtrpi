@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source ${0%/*}/common.sh
-cd_root
 
 MODULES_DIR='modules'
 TAG_NAME=$QT_VERSION
@@ -12,6 +11,7 @@ Usage: $0 [options]
 
 -h| --help                      Display help text.
 -c| --clean-all                 Delete all repositories and output data.
+-d| --directory                 Destination directory where Qt modules are cloned.
 EOF
 }
 
@@ -25,6 +25,9 @@ while [[ $# -gt 0 ]]; do
         -c|--clean-all)
             CLEAN_ALL=true
         ;;
+        -d|--directory)
+            DIRECTORY_ARG="$2"
+        ;;
 
         *)
         ;;
@@ -35,6 +38,12 @@ done
 if [[ $DISPLAY_HELP ]]; then
     usage
     exit 0
+fi
+
+if [[ -z $DIRECTORY_ARG ]]; then
+    cd_root
+else
+    MODULES_DIR=$DIRECTORY_ARG
 fi
 
 if [[ $CLEAN_ALL ]]; then

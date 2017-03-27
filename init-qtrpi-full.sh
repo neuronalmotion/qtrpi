@@ -2,7 +2,7 @@
 
 cd utils
 ./init-common.sh
-./init-full.sh
+./download-raspbian.sh
 ./prepare-sysroot-full.sh
 ./prepare-sysroot-minimal.sh
 ./switch-sysroot.sh full
