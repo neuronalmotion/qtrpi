@@ -5,6 +5,7 @@
 *.retry
 
 *.pyc
+.vagrant/
 
 # compiled output
 /dist
