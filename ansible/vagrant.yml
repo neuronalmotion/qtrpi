@@ -18,7 +18,7 @@
             - realpath
 
       - name: update QTRPI in bashrc
-        lineinfile: dest=/home/vagrant/.bashrc line="export QTRPI_TARGET_DEVICE='linux-rasp-pi2-g++'; export QTRPI_QT_VERSION='5.8.0'"
+        lineinfile: dest=/home/vagrant/.bashrc line="export QTRPI_TARGET_DEVICE='linux-rasp-pi2-g++'; export QTRPI_QT_VERSION='5.7.0'"
 
       - name: update ssh working directory
         lineinfile: dest=/home/vagrant/.bashrc line="cd /vagrant"
