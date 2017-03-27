@@ -17,6 +17,7 @@
             - git
             - realpath
             - unzip
+            - zip
 
       - name: update QT_VERSION in .profile
         lineinfile: dest=/home/vagrant/.profile line="export QTRPI_QT_VERSION='{{ lookup('env', 'QTRPI_QT_VERSION') }}'"
