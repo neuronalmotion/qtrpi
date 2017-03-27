@@ -67,6 +67,8 @@ if [[ -f ${RASPBIAN_BASENAME}.img ]]; then
                 [Nn]* ) break;;
             esac
         done
+    else
+        echo "Using cached raspbian image"
     fi
 else
     download_raspbian;

@@ -15,7 +15,7 @@ while [[ $# -gt 0 ]]; do
         -h|--help)
             DISPLAY_HELP=true
         ;;
-        -n|--no-download)
+        -n|--no-questions)
             NO_QUESTIONS=true
         ;;
         *)
