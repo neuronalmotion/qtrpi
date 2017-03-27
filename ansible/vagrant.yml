@@ -18,8 +18,11 @@
             - realpath
             - unzip
 
-      - name: update QTRPI in bashrc
-        lineinfile: dest=/home/vagrant/.bashrc line="export QTRPI_TARGET_DEVICE='linux-rasp-pi2-g++'; export QTRPI_QT_VERSION='5.7.0'"
+      - name: update QT_VERSION in bashrc
+        lineinfile: dest=/home/vagrant/.bashrc line="export QTRPI_QT_VERSION='{{ lookup('env', 'QTRPI_QT_VERSION') }}'"
+
+      - name: update TARGET_DEVICE in bashrc
+        lineinfile: dest=/home/vagrant/.bashrc line="export QTRPI_TARGET_DEVICE='{{ lookup('env', 'QTRPI_TARGET_DEVICE') }}'"
 
       - name: update ssh working directory
         lineinfile: dest=/home/vagrant/.bashrc line="cd /vagrant"
