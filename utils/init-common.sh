@@ -16,14 +16,5 @@ cd_root
 
 mkdir raspi raspbian bin logs
 
-# Get the toolchain (~600Mo)
-message 'Downloading Raspberry Pi toolchain'
-pushd raspi
-git clone https://github.com/raspberrypi/tools
-
-pushd tools
-git pull origin master
-popd
-
-popd
+$UTILS_DIR/synchronize-toolchain.sh
 
