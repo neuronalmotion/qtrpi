@@ -18,11 +18,11 @@
             - realpath
             - unzip
 
-      - name: update QT_VERSION in bashrc
-        lineinfile: dest=/home/vagrant/.bashrc line="export QTRPI_QT_VERSION='{{ lookup('env', 'QTRPI_QT_VERSION') }}'"
+      - name: update QT_VERSION in .profile
+        lineinfile: dest=/home/vagrant/.profile line="export QTRPI_QT_VERSION='{{ lookup('env', 'QTRPI_QT_VERSION') }}'"
 
-      - name: update TARGET_DEVICE in bashrc
-        lineinfile: dest=/home/vagrant/.bashrc line="export QTRPI_TARGET_DEVICE='{{ lookup('env', 'QTRPI_TARGET_DEVICE') }}'"
+      - name: update TARGET_DEVICE in .profile
+        lineinfile: dest=/home/vagrant/.profile line="export QTRPI_TARGET_DEVICE='{{ lookup('env', 'QTRPI_TARGET_DEVICE') }}'"
 
       - name: update ssh working directory
-        lineinfile: dest=/home/vagrant/.bashrc line="cd /vagrant"
+        lineinfile: dest=/home/vagrant/.profile line="cd /vagrant"
