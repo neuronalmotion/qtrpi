@@ -1,9 +1,43 @@
 #!/bin/bash
 
+function usage() {
+    cat <<EOF
+Usage: $0 [options]
+
+-h| --help                      Display help text.
+-n| --no-questions              No interactive mode (default behavior by default: raspbian image cache is not re-downloaded).
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+    KEY="$1"
+    case $KEY in
+        -h|--help)
+            DISPLAY_HELP=true
+        ;;
+        -n|--no-download)
+            NO_QUESTIONS=true
+        ;;
+        *)
+        ;;
+    esac
+    shift
+done
+
+if [[ $DISPLAY_HELP ]]; then
+    usage
+    exit 0
+fi
+
+RASPBIAN_ARG=''
+if [[ $NO_QUESTIONS ]]; then
+    RASPBIAN_ARG='--no-download'
+fi
+
 cd utils
 ./init-common.sh
 ./synchronize-toolchain.sh
-./download-raspbian.sh
+./download-raspbian.sh $RASPBIAN_ARG
 ./prepare-sysroot-full.sh
 ./prepare-sysroot-minimal.sh
 ./switch-sysroot.sh full
