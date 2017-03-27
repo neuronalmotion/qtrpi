@@ -6,6 +6,7 @@ source ${0%/*}/utils/common.sh
 
 # prepare environment
 $UTILS_DIR/utils/init-common.sh
+$UTILS_DIR/utils/synchronize-toolchain.sh
 cd_root
 
 # download and unzip sysroot

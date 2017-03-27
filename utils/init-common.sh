@@ -16,5 +16,3 @@ cd_root
 
 mkdir raspi raspbian bin logs
 
-$UTILS_DIR/synchronize-toolchain.sh
-
