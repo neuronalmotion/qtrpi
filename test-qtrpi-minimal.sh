@@ -9,9 +9,14 @@ export QTRPI_BASE_URL="$CI_BASE_URL/job/qtrpi/QT_VERSION=$QTRPI_QT_VERSION,TARGE
 
 pushd $ROOT
 download_qtrpi_binaries
+
+EXAMPLE_BIN='qopenglwidget'
+message "Download $EXAMPLE_BIN from $QTRPI_BASE_URL/$EXAMPLE_BIN"
 curl $QTRPI_CURL_OPT \
-    -o raspi/qt5pi/qopenglwidget \
-    $QTRPI_BASE_URL/qopenglwidget 
+    -o raspi/qt5pi/$EXAMPLE_BIN \
+    $QTRPI_BASE_URL/$EXAMPLE_BIN 
+
+chmod +x raspi/qt5pi/$EXAMPLE_BIN
 popd
 
 ./deploy-qtrpi.sh --prepare-rpi

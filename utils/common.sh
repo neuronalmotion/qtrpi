@@ -12,17 +12,18 @@ TARGET_HOST=$QTRPI_TARGET_HOST
 RASPBIAN_BASENAME='raspbian_latest'
 VERSION='1.1.0'
 
+case $TARGET_DEVICE in
+    'linux-rasp-pi-g++') DEVICE_NAME='rpi1' ;;
+    'linux-rasp-pi2-g++') DEVICE_NAME='rpi2' ;;
+    'linux-rpi3-g++') DEVICE_NAME='rpi3' ;;
+esac
+
 QTRPI_ZIP="qtrpi-${DEVICE_NAME}_qt-${QT_VERSION}.zip"
 QTRPI_BASE_URL='http://www.qtrpi.com/downloads'
 QTRPI_SYSROOT_URL="$QTRPI_BASE_URL/sysroot/qtrpi-sysroot-minimal-latest.zip"
 QTRPI_MINIMAL_URL="$QTRPI_BASE_URL/qtrpi/$DEVICE_NAME/$QTRPI_ZIP"
 QTRPI_CURL_OPT=''
 
-case $TARGET_DEVICE in
-    'linux-rasp-pi-g++') DEVICE_NAME='rpi1' ;;
-    'linux-rasp-pi2-g++') DEVICE_NAME='rpi2' ;;
-    'linux-rpi3-g++') DEVICE_NAME='rpi3' ;;
-esac
 
 # Get absolute path of script dir for later execution
 # /!\ has to be executed *before* any "cd" command
