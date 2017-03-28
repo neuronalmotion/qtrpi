@@ -12,6 +12,12 @@ TARGET_HOST=$QTRPI_TARGET_HOST
 RASPBIAN_BASENAME='raspbian_latest'
 VERSION='1.1.0'
 
+QTRPI_ZIP="qtrpi-${DEVICE_NAME}_qt-${QT_VERSION}.zip"
+QTRPI_BASE_URL='http://www.qtrpi.com/downloads'
+QTRPI_SYSROOT_URL="$QTRPI_BASE_URL/sysroot/qtrpi-sysroot-minimal-latest.zip"
+QTRPI_MINIMAL_URL="$QTRPI_BASE_URL/qtrpi/$DEVICE_NAME/$QTRPI_ZIP"
+QTRPI_CURL_OPT=''
+
 case $TARGET_DEVICE in
     'linux-rasp-pi-g++') DEVICE_NAME='rpi1' ;;
     'linux-rasp-pi2-g++') DEVICE_NAME='rpi2' ;;
@@ -64,5 +70,21 @@ function qmake_cmd() {
 function make_cmd() {
     LOG_FILE=${1-'default'}
     make -j 10 |& tee --append $ROOT/logs/$LOG_FILE.log
+}
+
+function download_sysroot_minimal() {
+    message "Download sysroot-minimal from $QTRPI_SYSROOT_URL"
+    SYSROOT_ZIP='sysroot-minimal-latest.zip'
+    curl $QTRPI_CURL_OPT -o $SYSROOT_ZIP $QTRPI_SYSROOT_URL
+    unzip -o $SYSROOT_ZIP
+    $UTILS_DIR/utils/switch-sysroot.sh minimal
+}
+
+function download_qtrpi_binaries() {
+    message "Download qtrpi binaries from $QTRPI_MINIMAL_URL"
+    curl $QTRPI_CURL_OPT -o $QTRPI_ZIP $QTRPI_MINIMAL_URL
+    unzip -o $QTRPI_ZIP
+
+    ln -sf $ROOT/raspi/qt5/bin/qmake $ROOT/bin/qmake-qtrpi
 }
 

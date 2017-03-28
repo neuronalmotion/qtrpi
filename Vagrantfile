@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "#{ENV['QTRPI_VM_NAME']}"
  
   config.vm.provider "virtualbox" do |v|
-    v.memory = 2048
+    v.memory = 4096
     v.cpus = 8
   end
 
