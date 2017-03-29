@@ -1,54 +1,54 @@
 # QtRpi
 
 ## Purpose
-Offer an easy-to-use environment to cross-compile Qt application on a Raspberry Pi. This repo contains all the scripts necessary to prepare a sysroot, cross-compile Qt and deploy Qt libraries to your Raspberry.
+Offer an easy-to-use environment to cross-compile Qt application on a Raspberry Pi. This repo contains all the scripts needed to prepare a sysroot, cross-compile Qt and deploy Qt libraries to your Raspberry.
 
 For more information, go to http://www.qtrpi.com/faq.
 
 ## How to contact us?
-You can fill a contact form from our [official website](https://www.neuronalmotion.com/contact/) or send us an email at contact [at] neuronalmotion [dot] com.
+You can fill a contact form from our [official website](https://www.neuronalmotion.com/contact/) or send us an email at *contact [at] neuronalmotion [dot] com*.
 
 ## Difference between init-qtrpi-minimal and init-qtrpi-full
-* **init-qtrpi-minimal** the typical way: downloads ready-to-use Qt binaries for the Raspberry Pi and a minimal sysroot that we released on the [official website](http://www.qtrpi.com/download)
-* **init-qtrpi-full** the custom way: compiles on your computer the Qt binaries for the Raspberry Pi. So you can tweak the configuration, enhance the compilation adding some missing Qt moudles to QtRpi or add some specific third-party depedencies
+* **init-qtrpi-minimal**, the typical way: downloads ready-to-use Qt binaries for the Raspberry Pi and a minimal sysroot that we released on the [official website](http://www.qtrpi.com/download)
+* **init-qtrpi-full**, the custom way: compiles on your computer the Qt binaries for the Raspberry Pi to let you tweak the configuration, enhance the compilation by adding some missing Qt moduless to QtRpi or add some specific third-party dependencies
 
 ### Summary
 |                     | init-qtrpi-minimal            | init-qtrpi-full                      |
 | ------------------- | ----------------------------- | ------------------------------------ |
-| Raspbian image      |                               | *from raspberrypi.org*               |
-| Toochain            | *from github.com/raspberrypi* | *from from github.com/raspberrypi*   |
-| Sysroot             | *from qtrpi.com*              | generated from raspbian image        |
-| Qt binaries         | *from qtrpi.com*              | compiled                             |
+| Raspbian image      |                               | *from [raspberrypi.org](https://www.raspberrypi.org/downloads/raspbian/)*               |
+| Toochain            | *from [the github project](https://github.com/raspberrypi/tools)* | *from [the github project](https://github.com/raspberrypi/tools)*   |
+| Sysroot             | *from [qtrpi.com](http://www.qtrpi.com/download)*              | generated from raspbian image        |
+| Qt binaries         | *from [qtrpi.com](http://www.qtrpi.com/download)*              | compiled                             |
 
 ## Tutorial of init-qtrpi-minimal.sh
 
 This tutorial will help you to:
-* configure your host computer to be able to cross-compile Qt 5.7.0 applicaton for your Raspberry Pi 3
-* deploy the pre-complied Qt binaries on your Raspberry Pi
-* cross-compile your application for a Raspberry Pi with CLI or Qt Creator
+* Configure your host computer to be able to cross-compile Qt 5.7.0 applications for your Raspberry Pi 3
+* Deploy the pre-compiled Qt binaries on your Raspberry Pi
+* Cross-compile your application for a Raspberry Pi with the CLI or Qt Creator
 
 ### Requirements
 * A 64-bit Linux host computer
 * A Raspberry Pi 3
 
-In this example, you already have a SSH access to your Raspberry Pi 3 at 192.168.1.12 with the user "pi". The script will use sudo several times to install the packages on the board. You should add your SSH key in your Raspberry Pi. For example with **ssh-copy-id**:
-```
+In this example, you already have an SSH access to your Raspberry Pi 3 at `192.168.1.12` with the user `pi`. The script will use sudo several times to install the packages on the board. You should add your SSH key in your Raspberry Pi. For example with **`ssh-copy-id`**:
+```bash
 ssh-copy-id pi@192.168.1.12
 ```
 
 ### Installation 
 Open a terminal and follow the steps below:
-```
+```bash
 git clone https://github.com/neuronalmotion/qtrpi.git
+cd qtrpi
 export QTRPI_QT_VERSION='5.7.0'
 export QTRPI_TARGET_DEVICE='linux-rpi3-g++'
 export QTRPI_TARGET_HOST='pi@192.168.1.12'
-cd qtrpi
 ./init-qtrpi-minimal.sh
 ./deploy-qtrpi.sh --prepare-rpi
 ```
 
-Note: You can also export the *environment variables* to your **.bashrc** and source it.
+Note: You can also export the *environment variables* in your **.bashrc**.
 
 ### Usage in CLI
 ```
@@ -56,9 +56,9 @@ cd myproject
 /opt/qtrpi/bin/qmake-qtrpi
 make
 ```
-You can now copy and excute the generated binary file on your Raspberry Pi
+You can now copy and execute the generated binary file on your Raspberry Pi
 
-Note: You can also add **/opt/qtrpi/bin/** to your PATH in your .bashrc and call **qmake-qtrpi** without the full path.
+Note: You can also add **/opt/qtrpi/bin/** to your `PATH` in your .bashrc and call **qmake-qtrpi** without the full path.
 
 ### Usage in Qt Creator
 *coming soon...*
