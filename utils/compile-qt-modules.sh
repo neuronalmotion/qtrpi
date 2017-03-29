@@ -19,12 +19,13 @@ EOF
 }
 
 function build_module() {
+    MODULE=$1
     if [[ $CLEAN_MODULES_REPO ]]; then
         clean_git_and_compilation
     fi
-	$ROOT/raspi/qt5/bin/qmake -r
 
-	make -j 10
+    qmake_cmd $MODULE
+	make_cmd $MODULE
 	make install
 }
 
@@ -47,6 +48,7 @@ EOL
 function build_qtbase() {
     export CROSS_COMPILE=$ROOT/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
     export SYSROOT=$ROOT/raspbian/sysroot
+    MODULE='qtbase'
 
     if [[ $CLEAN_MODULES_REPO ]]; then
         clean_git_and_compilation
@@ -64,12 +66,13 @@ function build_qtbase() {
         -device-option CROSS_COMPILE=$CROSS_COMPILE \
         -sysroot $SYSROOT \
         -opensource -confirm-license -make libs \
-        $NO_USE_GOLD_LINKER \
         -prefix /usr/local/qt5pi \
         -extprefix $OUTPUT_DIR \
-        -hostprefix $OUTPUT_HOST_DIR
+        -hostprefix $OUTPUT_HOST_DIR \
+        $NO_USE_GOLD_LINKER \
+        |& tee $ROOT/logs/$MODULE.log
 
-    make -j 10
+    make_cmd $MODULE
     make install
     ln -sf $OUTPUT_HOST_DIR/bin/qmake $ROOT/bin/qmake-qtrpi
 }
@@ -108,15 +111,20 @@ if [[ $CLEAN_OUTPUT ]]; then
     rm -rf $OUTPUT_DIR/*
 fi
 
-message 'Build qtbase...'
-pushd $ROOT/modules/qtbase
-build_qtbase
-popd
+for MODULE in "${QT_MODULES[@]}" ; do
+    if [[ $MODULE == \#* ]]; then
+        continue
+    fi
 
-for MODULE in qtdeclarative qt3d qtquickcontrols qtquickcontrols2; do
     message "Build $MODULE..."
     pushd $ROOT/modules/$MODULE
-    build_module
+
+    if [[ "$MODULE" == "qtbase" ]]; then
+        build_qtbase
+    else
+        build_module $MODULE
+    fi
     popd
 done
+
 

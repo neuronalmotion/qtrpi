@@ -40,15 +40,18 @@ if [[ $DISPLAY_HELP ]]; then
 fi
 
 if [[ $PREPARE_RPI ]]; then
-    ssh $TARGET_HOST 'sudo mkdir /usr/local/qt5pi ; sudo chown -R pi:pi /usr/local/qt5pi'
+    TARGET_USER=$(echo $TARGET_HOST | cut -d@ -f1)
+    ssh $TARGET_HOST "sudo mkdir /usr/local/qt5pi ; sudo chown -R ${TARGET_USER}:users /usr/local/qt5pi"
     ssh $TARGET_HOST 'sudo apt-get install -y apt-transport-https'
     ssh $TARGET_HOST 'sudo apt-get install -y libts-0.0-0 libinput5'
-    ssh $TARGET_HOST "sudo sh -c 'echo /usr/local/qt5pi/lib > /etc/ld.so.conf.d/qt5pi.conf'"
+    ssh $TARGET_HOST "sudo sh -c 'echo /usr/local/qt5pi/lib > /etc/ld.so.conf.d/99-qt5pi.conf'"
 
     # to fix which version of libEGL should be picked by Qt applications (/opt/vc rather than /usr/lib/....)
     ssh $TARGET_HOST "sudo sh -c 'rm /usr/lib/arm-linux-gnueabihf/libEGL.so.1.0.0 /usr/lib/arm-linux-gnueabihf/libGLESv2.so.2.0.0'"
     ssh $TARGET_HOST "sudo sh -c 'ln -sf /opt/vc/lib/libEGL.so /usr/lib/arm-linux-gnueabihf/libEGL.so.1.0.0'"
+    ssh $TARGET_HOST "sudo sh -c 'ln -sf /opt/vc/lib/libEGL.so /usr/lib/arm-linux-gnueabihf/libEGL.so.1'"
     ssh $TARGET_HOST "sudo sh -c 'ln -sf /opt/vc/lib/libGLESv2.so /usr/lib/arm-linux-gnueabihf/libGLESv2.so.2.0.0'"
+    ssh $TARGET_HOST "sudo sh -c 'ln -sf /opt/vc/lib/libGLESv2.so /usr/lib/arm-linux-gnueabihf/libGLESv2.so.2'"
 fi
 
 rsync -avz $OUTPUT_DIR $TARGET_HOST:/usr/local/
