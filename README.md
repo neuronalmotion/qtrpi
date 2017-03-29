@@ -53,6 +53,7 @@ cd myproject
 /opt/qtrpi/bin/qmake-qtrpi
 make
 ```
+You can now copy and excute the generated binary file on your Raspberry Pi
 
 Note: You can also add **/opt/qtrpi/bin/** to your PATH in your .bashrc and call **qmake-qtrpi** without the full path.
 
