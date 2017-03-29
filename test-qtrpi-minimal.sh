@@ -1,7 +1,5 @@
 #!/bin/bash
 
-QTRPI_BASE_URL='http://www.qtrpi.com/downloads'
-
 source ${0%/*}/utils/common.sh
 
 export QTRPI_CURL_OPT="--user $CI_AUTH_USER:$CI_AUTH_PASSWORD"
