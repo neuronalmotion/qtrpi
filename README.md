@@ -37,7 +37,7 @@ ssh-copy-id pi@192.168.1.12
 ```
 
 ### Installation 
-Open a terminal follow the steps above:
+Open a terminal and follow the steps below:
 ```
 git clone https://github.com/neuronalmotion/qtrpi.git
 export QTRPI_QT_VERSION='5.7.0'
