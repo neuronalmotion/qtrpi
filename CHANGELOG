@@ -1,3 +1,13 @@
+v1.2.0 - 2017-03-29
+- Add QtSvg module
+- Add QtSerialPort module
+- Add local cache for raspbian / toolchain / Qt modules
+- Add Vagrant to virtualize qtrpi (provisionned with Ansible)
+- Add test qtrpi minimal script
+- Add download ci artefacts scripts
+- Update raspbian compatibility to the version 2017-03-02
+- Update README
+
 v1.1.0 - 2016-11-09
 - Add support for RPi 1 & RPi 3
 - Add support of Qt 5.6.2
