@@ -8,8 +8,17 @@ For more information, go to http://www.qtrpi.com/faq.
 ## How to contact us?
 You can fill a contact form from our [official website](https://www.neuronalmotion.com/contact/) or send us an email at contact [at] neuronalmotion [dot] com.
 
-## Should I use init-qtrpi-minimal or init-qtrpi-full?
-TODO
+## Difference between init-qtrpi-minimal and init-qtrpi-full
+* **init-qtrpi-minimal** the typical way: downloads ready-to-use Qt binaries for the Raspberry Pi and a minimal sysroot that we released on the [official website](http://www.qtrpi.com/download)
+* **init-qtrpi-full** the custom way: compiles on your computer the Qt binaries for the Raspberry Pi. So you can tweak the configuration, enhance the compilation adding some missing Qt moudles to QtRpi or add some specific third-party depedencies
+
+### Summary
+|                     | init-qtrpi-minimal            | init-qtrpi-full                      |
+| ------------------- | ----------------------------- | ------------------------------------ |
+| Raspbian image      |                               | *from raspberrypi.org*               |
+| Toochain            | *from github.com/raspberrypi* | *from from github.com/raspberrypi*   |
+| Sysroot             | *from qtrpi.com*              | generated from raspbian image        |
+| Qt binaries         | *from qtrpi.com*              | compiled                             |
 
 ## Tutorial of init-qtrpi-minimal.sh
 
