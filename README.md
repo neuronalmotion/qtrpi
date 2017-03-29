@@ -22,13 +22,16 @@ You can fill a contact form from our [official website](https://www.neuronalmoti
 
 ## Tutorial of init-qtrpi-minimal.sh
 
-This tutorial configure your host computer to be able to cross-compile Qt 5.7.0 applicaton for your Raspberry Pi 3. In this example, you already have a SSH access to your Raspberry Pi 3 at 192.168.1.12 with the user "pi".
+This tutorial will help you to:
+* configure your host computer to be able to cross-compile Qt 5.7.0 applicaton for your Raspberry Pi 3
+* deploy the pre-complied Qt binaries on your Raspberry Pi
+* cross-compile your application for a Raspberry Pi with CLI or Qt Creator
 
 ### Requirements
 * A 64-bit Linux host computer
 * A Raspberry Pi 3
 
-The script will use sudo several times to install the packages on the board. You should add your SSH key in your Raspberry Pi. For example with **ssh-copy-id**:
+In this example, you already have a SSH access to your Raspberry Pi 3 at 192.168.1.12 with the user "pi". The script will use sudo several times to install the packages on the board. You should add your SSH key in your Raspberry Pi. For example with **ssh-copy-id**:
 ```
 ssh-copy-id pi@192.168.1.12
 ```
