@@ -6,6 +6,8 @@ export QTRPI_CURL_OPT="--user $CI_AUTH_USER:$CI_AUTH_PASSWORD"
 export QTRPI_BASE_URL="$CI_BASE_URL/job/qtrpi/QT_VERSION=$QTRPI_QT_VERSION,TARGET_DEVICE=$QTRPI_TARGET_DEVICE/lastSuccessfulBuild/artifact/dist"
 
 pushd $ROOT
+
+rm -rf raspi/{qt5,qt5pi}
 download_qtrpi_binaries
 
 EXAMPLE_BIN='qopenglwidget'
