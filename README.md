@@ -61,7 +61,8 @@ You can now copy and execute the generated binary file on your Raspberry Pi
 Note: You can also add **/opt/qtrpi/bin/** to your `PATH` in your .bashrc and call **qmake-qtrpi** without the full path.
 
 ### Usage in Qt Creator
-*coming soon...*
+How to build a Raspberry Pi 3 application from your desktop Qt Creator (step by step video):
+[![Alt How to build a Raspberry Pi 3 application from your desktop Qt Creator](https://img.youtube.com/vi/1d2bh7iUKNc/0.jpg)](https://www.youtube.com/watch?v=1d2bh7iUKNc)
 
 ## Tutorial of init-qtrpi-full.sh
 
