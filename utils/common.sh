@@ -86,7 +86,7 @@ function download_sysroot_minimal() {
     curl $QTRPI_CURL_OPT -o $SYSROOT_ZIP $QTRPI_SYSROOT_URL
     if [[ "$INSTALL" = true ]]; then
         unzip -o $SYSROOT_ZIP
-        $UTILS_DIR/utils/switch-sysroot.sh minimal
+        $UTILS_DIR/switch-sysroot.sh minimal
     fi
 }
 
