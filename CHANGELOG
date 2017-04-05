@@ -1,3 +1,7 @@
+v1.2.1 - 2017-04-05
+- Fix sysroot symlink creation
+- Update README with Qt Creator video
+
 v1.2.0 - 2017-03-29
 - Add QtSvg module
 - Add QtSerialPort module
