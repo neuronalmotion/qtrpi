@@ -10,7 +10,7 @@ You can fill a contact form from our [official website](https://www.neuronalmoti
 
 ## Difference between init-qtrpi-minimal and init-qtrpi-full
 * **init-qtrpi-minimal**, the typical way: downloads ready-to-use Qt binaries for the Raspberry Pi and a minimal sysroot that we released on the [official website](http://www.qtrpi.com/download)
-* **init-qtrpi-full**, the custom way: compiles on your computer the Qt binaries for the Raspberry Pi to let you tweak the configuration, enhance the compilation by adding some missing Qt moduless to QtRpi or add some specific third-party dependencies
+* **init-qtrpi-full**, the custom way: compiles on your computer the Qt binaries for the Raspberry Pi to let you tweak the configuration, enhance the compilation by adding some missing Qt modules to QtRpi or add some specific third-party dependencies
 
 ### Summary
 |                     | init-qtrpi-minimal            | init-qtrpi-full                      |
@@ -61,7 +61,8 @@ You can now copy and execute the generated binary file on your Raspberry Pi
 Note: You can also add **/opt/qtrpi/bin/** to your `PATH` in your .bashrc and call **qmake-qtrpi** without the full path.
 
 ### Usage in Qt Creator
-*coming soon...*
+How to build a Raspberry Pi 3 application from your desktop Qt Creator (step by step video):
+[![Alt How to build a Raspberry Pi 3 application from your desktop Qt Creator](https://img.youtube.com/vi/1d2bh7iUKNc/0.jpg)](https://www.youtube.com/watch?v=1d2bh7iUKNc)
 
 ## Tutorial of init-qtrpi-full.sh
 

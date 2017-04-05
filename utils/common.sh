@@ -20,7 +20,7 @@ TARGET_DEVICE=${QTRPI_TARGET_DEVICE-'linux-rasp-pi2-g++'}
 QT_VERSION=${QTRPI_QT_VERSION-'5.7.0'}
 TARGET_HOST=$QTRPI_TARGET_HOST
 RASPBIAN_BASENAME='raspbian_latest'
-VERSION='1.2.0'
+VERSION='1.2.1'
 
 DEVICE_NAME=$(device_name $TARGET_DEVICE)
 
@@ -86,7 +86,7 @@ function download_sysroot_minimal() {
     curl $QTRPI_CURL_OPT -o $SYSROOT_ZIP $QTRPI_SYSROOT_URL
     if [[ "$INSTALL" = true ]]; then
         unzip -o $SYSROOT_ZIP
-        $UTILS_DIR/utils/switch-sysroot.sh minimal
+        $UTILS_DIR/switch-sysroot.sh minimal
     fi
 }
 
