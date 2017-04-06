@@ -37,6 +37,12 @@ ssh-copy-id pi@192.168.1.12
 ```
 
 ### Installation 
+[![https://www.youtube.com/watch?v=YYOjdwT5UuQ](https://img.youtube.com/vi/YYOjdwT5UuQ/0.jpg)](https://www.youtube.com/watch?v=YYOjdwT5UuQ)
+First, install the dependencies:
+```bash
+sudo apt-get install curl g++ gdb-multiarch git realpath unzip zip
+```
+
 Open a terminal and follow the steps below:
 ```bash
 git clone https://github.com/neuronalmotion/qtrpi.git
@@ -62,7 +68,7 @@ Note: You can also add **/opt/qtrpi/bin/** to your `PATH` in your .bashrc and ca
 
 ### Usage in Qt Creator
 How to build a Raspberry Pi 3 application from your desktop Qt Creator (step by step video):
-[![Alt How to build a Raspberry Pi 3 application from your desktop Qt Creator](https://img.youtube.com/vi/1d2bh7iUKNc/0.jpg)](https://www.youtube.com/watch?v=1d2bh7iUKNc)
+[![Cross-compile Qt applications for your Raspberry Pi 3 - 2. Configure Qt Creator](https://img.youtube.com/vi/1d2bh7iUKNc/0.jpg)](https://www.youtube.com/watch?v=1d2bh7iUKNc)
 
 ## Tutorial of init-qtrpi-full.sh
 
@@ -72,4 +78,3 @@ How to build a Raspberry Pi 3 application from your desktop Qt Creator (step by 
 * If you want to add a module, just add the repository name in the file [qt-modules.txt](https://github.com/neuronalmotion/qtrpi/blob/develop/qt-modules.txt)
 * You might have to add some packages in the sysroot, this can be done in [utils/prepare-sysroot-full.sh](https://github.com/neuronalmotion/qtrpi/blob/develop/utils/prepare-sysroot-full.sh)
 * Once you have modified these scripts, you should be able to re-execute [init-qtrpi-full.sh](https://github.com/neuronalmotion/qtrpi/blob/develop/init-qtrpi-full.sh) and see the magic happen.
-
