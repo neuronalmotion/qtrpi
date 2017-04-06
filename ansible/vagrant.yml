@@ -13,6 +13,7 @@
       - name: install packages
         apt: name={{ item }} state=present
         with_items:
+            - curl
             - g++
             - git
             - realpath
