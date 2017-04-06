@@ -38,6 +38,8 @@ ssh-copy-id pi@192.168.1.12
 
 ### Installation 
 [![https://www.youtube.com/watch?v=YYOjdwT5UuQ](https://img.youtube.com/vi/YYOjdwT5UuQ/0.jpg)](https://www.youtube.com/watch?v=YYOjdwT5UuQ)
+
+
 First, install the dependencies:
 ```bash
 sudo apt-get install curl g++ gdb-multiarch git realpath unzip zip
