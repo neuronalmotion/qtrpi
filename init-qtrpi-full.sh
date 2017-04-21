@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ${0%/*}/utils/common.sh
+
 function usage() {
     cat <<EOF
 Usage: $0 [options]
@@ -33,6 +35,8 @@ RASPBIAN_ARG=''
 if [[ $NO_QUESTIONS ]]; then
     RASPBIAN_ARG='--no-download'
 fi
+
+check_env_vars
 
 cd utils
 ./init-common.sh

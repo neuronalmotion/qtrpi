@@ -3,6 +3,8 @@
 source ${0%/*}/utils/common.sh
 OUTPUT_DIR=$ROOT/raspi/qt5pi
 
+check_env_vars
+
 cd_root
 
 function usage() {
