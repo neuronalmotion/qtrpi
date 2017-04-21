@@ -5,6 +5,8 @@
 # (the directory of the calling script is assumed to be the same as common.sh)
 ###############################################################################
 
+VERSION='1.2.3'
+
 function message() {
     echo
     echo '--------------------------------------------------------------------'
@@ -71,7 +73,6 @@ TARGET_DEVICE=${QTRPI_TARGET_DEVICE-'linux-rasp-pi2-g++'}
 QT_VERSION=${QTRPI_QT_VERSION-'5.7.0'}
 TARGET_HOST=$QTRPI_TARGET_HOST
 RASPBIAN_BASENAME='raspbian_latest'
-VERSION='1.2.2'
 
 DEVICE_NAME=$(device_name $TARGET_DEVICE)
 
