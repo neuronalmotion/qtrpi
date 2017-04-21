@@ -5,6 +5,20 @@
 # (the directory of the calling script is assumed to be the same as common.sh)
 ###############################################################################
 
+VERSION='1.2.3'
+
+function message() {
+    echo
+    echo '--------------------------------------------------------------------'
+    echo $1
+    echo '--------------------------------------------------------------------'
+}
+
+function exit_error() {
+    echo -e $1
+    exit -1
+}
+
 function device_name() {
     case $1 in
         'linux-rasp-pi-g++') NAME='rpi1' ;;
@@ -14,13 +28,51 @@ function device_name() {
     echo $NAME
 }
 
+validate_var_qtrpi_qt_version() {
+    for VERSION in '5.6.2' '5.7.0'; do
+        if [[ "$QTRPI_QT_VERSION" == "$VERSION" ]]; then
+            VALID=true
+        fi
+    done
+
+    if [[ ! $VALID ]]; then
+        exit_error "Invalid QTRPI_QT_VERSION value ($QTRPI_QT_VERSION). Supported values: \n- 5.6.2 \n- 5.7.0"
+    fi
+}
+
+validate_var_qtrpi_target_device() {
+    NAME=$(device_name $QTRPI_TARGET_DEVICE)
+
+    if [[ ! $NAME ]]; then
+        exit_error "Invalid QTRPI_TARGET_DEVICE value ($QTRPI_TARGET_DEVICE). Supported values: \n- linux-rasp-pi-g++ \n- linux-rasp-pi2-g++ \n- linux-rpi3-g++"
+    fi
+}
+
+validate_var_qtrpi_target_host() {
+    TARGET_USER=$(echo $QTRPI_TARGET_HOST | cut -d@ -f1)
+
+    if [[ "$TARGET_USER" == "$QTRPI_TARGET_HOST" ]] ; then
+        exit_error "Invalid QTRPI_TARGET_HOST value ($QTRPI_TARGET_HOST). Supported value should have the format 'user@ip-address' (e.g. pi@192.168.0.42)."
+    fi
+}
+
+check_env_vars() {
+    : "${QTRPI_QT_VERSION:?Invalid environment variable, please export QTRPI_QT_VERSION.}"
+    : "${QTRPI_TARGET_DEVICE:?Invalid environment variable: please export QTRPI_TARGET_DEVICE.}"
+    : "${QTRPI_TARGET_HOST:?Invalid environment variable: please export QTRPI_TARGET_HOST.}"
+
+    validate_var_qtrpi_qt_version
+    validate_var_qtrpi_target_device
+    validate_var_qtrpi_target_host
+    
+}
+
 
 ROOT=${QTRPI_ROOT-/opt/qtrpi}
 TARGET_DEVICE=${QTRPI_TARGET_DEVICE-'linux-rasp-pi2-g++'}
 QT_VERSION=${QTRPI_QT_VERSION-'5.7.0'}
 TARGET_HOST=$QTRPI_TARGET_HOST
 RASPBIAN_BASENAME='raspbian_latest'
-VERSION='1.2.2'
 
 DEVICE_NAME=$(device_name $TARGET_DEVICE)
 
@@ -42,18 +94,6 @@ fi
 
 # exclude new lines from array
 readarray -t QT_MODULES < $(realpath $UTILS_DIR/../)/qt-modules.txt
-
-function message() {
-    echo
-    echo '--------------------------------------------------------------------'
-    echo $1
-    echo '--------------------------------------------------------------------'
-}
-
-function exit_error() {
-    echo $1
-    exit -1
-}
 
 function cd_root() {
     if [[ ! -d $ROOT ]]; then

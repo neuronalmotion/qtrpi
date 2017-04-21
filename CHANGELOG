@@ -1,3 +1,7 @@
+v1.2.3 - 2017-04-21
+- Add fontconfig package in deploy-qtrpi script
+- Add sanity check on env vars at beginning of scripts
+
 v1.2.2 - 2017-04-06
 - Update README with host dependencies
 - Update README with qtrpi installation youtube video

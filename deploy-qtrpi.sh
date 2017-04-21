@@ -3,6 +3,8 @@
 source ${0%/*}/utils/common.sh
 OUTPUT_DIR=$ROOT/raspi/qt5pi
 
+check_env_vars
+
 cd_root
 
 function usage() {
@@ -43,7 +45,7 @@ if [[ $PREPARE_RPI ]]; then
     TARGET_USER=$(echo $TARGET_HOST | cut -d@ -f1)
     ssh $TARGET_HOST "sudo mkdir /usr/local/qt5pi ; sudo chown -R ${TARGET_USER}:users /usr/local/qt5pi"
     ssh $TARGET_HOST 'sudo apt-get install -y apt-transport-https'
-    ssh $TARGET_HOST 'sudo apt-get install -y libts-0.0-0 libinput5'
+    ssh $TARGET_HOST 'sudo apt-get install -y libts-0.0-0 libinput5 fontconfig'
     ssh $TARGET_HOST "sudo sh -c 'echo /usr/local/qt5pi/lib > /etc/ld.so.conf.d/99-qt5pi.conf'"
 
     # to fix which version of libEGL should be picked by Qt applications (/opt/vc rather than /usr/lib/....)
