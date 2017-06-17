@@ -75,7 +75,7 @@ How to build a Raspberry Pi 3 application from your desktop Qt Creator (step by 
 ## Tutorial of init-qtrpi-full.sh
 
 ### How to add a new Qt module in QtRpi?
-* In this case, you must use [init-qtrpi-full.sh](https://github.com/neuronalmotion/qtrpi/blob/develop/init-qtrpi-full.sh), because you will have to recompile it on your computers
+* In this case, you must use [init-qtrpi-full.sh](https://github.com/neuronalmotion/qtrpi/blob/develop/init-qtrpi-full.sh), because you will have to recompile it on your computer
 * All the modules are cloned from the official Qt website (http://code.qt.io/)
 * If you want to add a module, just add the repository name in the file [qt-modules.txt](https://github.com/neuronalmotion/qtrpi/blob/develop/qt-modules.txt)
 * You might have to add some packages in the sysroot, this can be done in [utils/prepare-sysroot-full.sh](https://github.com/neuronalmotion/qtrpi/blob/develop/utils/prepare-sysroot-full.sh)
