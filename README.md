@@ -29,7 +29,7 @@ This tutorial will help you to:
 
 ### Requirements
 * A 64-bit Linux host computer
-* A Raspberry Pi 3
+* A Raspberry Pi 3 **with Raspbian Jessie** (Raspbian Stretch is currently not supported!)
 
 In this example, you already have an SSH access to your Raspberry Pi 3 at `192.168.1.12` with the user `pi`. The script will use sudo several times to install the packages on the board. You should add your SSH key in your Raspberry Pi. For example with **`ssh-copy-id`**:
 ```bash
