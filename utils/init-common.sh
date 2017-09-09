@@ -4,7 +4,7 @@ source ${0%/*}/common.sh
 
 message 'Creating qtrpi directory structure'
 
-if [[ ! $QTRPI_DOCKER ]]; then
+if [[ ! $DOCKER_BUILD ]]; then
     # sanity check for mounted image
     sudo umount /mnt/raspbian
     sudo umount $ROOT/raspbian/sysroot-full/sys
