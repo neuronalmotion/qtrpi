@@ -11,7 +11,7 @@ RUN apt-get update -q && apt-get install -yq --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Clone Qtrpi and additional scripts
-RUN git clone https://github.com/neuronalmotion/qtrpi.git
+RUN git clone https://github.com/rose-a/qtrpi.git -b docker-compatibility
 
 # Setup Qtrpi environment
 ENV QTRPI_QT_VERSION='5.6.2' \
