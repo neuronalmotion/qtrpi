@@ -80,3 +80,25 @@ How to build a Raspberry Pi 3 application from your desktop Qt Creator (step by 
 * If you want to add a module, just add the repository name in the file [qt-modules.txt](https://github.com/neuronalmotion/qtrpi/blob/develop/qt-modules.txt)
 * You might have to add some packages in the sysroot, this can be done in [utils/prepare-sysroot-full.sh](https://github.com/neuronalmotion/qtrpi/blob/develop/utils/prepare-sysroot-full.sh)
 * Once you have modified these scripts, you should be able to re-execute [init-qtrpi-full.sh](https://github.com/neuronalmotion/qtrpi/blob/develop/init-qtrpi-full.sh) and see the magic happen.
+
+## Docker images
+
+The images are tagged according to their target configuration.
+
+Currently the following tags are available:
+
+* `rpi3-qt5.6.2`: Crosscompile Qt 5.6.2 for the Raspbarry Pi 3
+
+Choose the image which fits your needs.
+
+### Building a Qt project
+
+To build a Qt project, mount the directory containing the sources and the project file to the `/sources` path inside the container and run it.
+By default the image automatically executes `qmake` and `make` in the current working directory, which is set to `/sources` by default.
+
+#### Example
+
+``` shell
+docker pull arose/qtrpi:rpi3-qt5.6.2
+docker run -v /someqtprojectfolder/:/source arose/qtrpi:rpi3-qt5.6.2
+```
