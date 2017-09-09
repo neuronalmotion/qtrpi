@@ -84,7 +84,6 @@ QTRPI_CURL_OPT=''
 
 # evaluate docker usage
 if [[ $QTRPI_DOCKER ]]; then
-    echo "docker detected"
     DOCKER_BUILD=$QTRPI_DOCKER
 fi
 
