@@ -72,7 +72,6 @@ ROOT=${QTRPI_ROOT-/opt/qtrpi}
 TARGET_DEVICE=${QTRPI_TARGET_DEVICE-'linux-rasp-pi2-g++'}
 QT_VERSION=${QTRPI_QT_VERSION-'5.7.0'}
 TARGET_HOST=$QTRPI_TARGET_HOST
-DOCKER_BUILD=$QTRPI_DOCKER
 RASPBIAN_BASENAME='raspbian_latest'
 
 DEVICE_NAME=$(device_name $TARGET_DEVICE)
@@ -83,6 +82,11 @@ QTRPI_SYSROOT_URL="$QTRPI_BASE_URL/sysroot/qtrpi-sysroot-minimal-latest.zip"
 QTRPI_MINIMAL_URL="$QTRPI_BASE_URL/qtrpi/$DEVICE_NAME/$QTRPI_ZIP"
 QTRPI_CURL_OPT=''
 
+# evaluate docker usage
+if [[ $QTRPI_DOCKER ]]; then
+    echo "docker detected"
+    DOCKER_BUILD=$QTRPI_DOCKER
+fi
 
 # Get absolute path of script dir for later execution
 # /!\ has to be executed *before* any "cd" command
