@@ -22,10 +22,12 @@ ENV QTRPI_QT_VERSION='5.6.2' \
 # Change workdir
 WORKDIR /qtrpi
 
-# Execute init script
+# Execute init script and clean up after it
 RUN ./init-qtrpi-minimal.sh && \
-    rm /opt/qtrpi/*.zip
-    rm -rf /opt/qtrpi/raspi/tools/.git
+    rm /opt/qtrpi/*.zip && \
+    rm -rf /opt/qtrpi/raspi/tools/.git && \
+    rm -rf /opt/qtrpi/raspi/tools/arm-bcm2708/arm-* && \
+    rm -rf /opt/qtrpi/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian   
 
 # Extend path
 ENV PATH=/opt/qtrpi/bin:$PATH
