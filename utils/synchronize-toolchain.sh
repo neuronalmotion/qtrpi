@@ -43,10 +43,15 @@ cd raspi
 
 message 'Downloading Raspberry Pi toolchain'
 
-if [[ ! -d 'tools' ]]; then
-    git clone https://github.com/raspberrypi/tools
-fi
+if [[ ! $DOCKER_BUILD ]]; then
+    if [[ ! -d 'tools' ]]; then
+        git clone https://github.com/raspberrypi/tools
+    fi
 
-pushd tools
-git pull origin master
-popd
+    pushd tools
+    git pull origin master
+    popd
+else
+    # create shallow copy, which is a lot faster
+    git clone --depth=1 -b master https://github.com/raspberrypi/tools
+fi
