@@ -3,10 +3,10 @@
 ## Purpose
 Offer an easy-to-use environment to cross-compile Qt application on a Raspberry Pi. This repo contains all the scripts needed to prepare a sysroot, cross-compile Qt and deploy Qt libraries to your Raspberry.
 
-For more information, go to http://www.qtrpi.com/faq.
+For more information, go to [the wiki](https://github.com/neuronalmotion/qtrpi/wiki)
 
 ## Difference between init-qtrpi-minimal and init-qtrpi-full
-* **init-qtrpi-minimal**, the typical way: downloads ready-to-use Qt binaries for the Raspberry Pi and a minimal sysroot that we released on the [official website](http://www.qtrpi.com/download)
+* **init-qtrpi-minimal**, the typical way: downloads ready-to-use Qt binaries for the Raspberry Pi and a minimal sysroot that we released on the [download page](https://github.com/neuronalmotion/qtrpi/wiki/Download)
 * **init-qtrpi-full**, the custom way: compiles on your computer the Qt binaries for the Raspberry Pi to let you tweak the configuration, enhance the compilation by adding some missing Qt modules to QtRpi or add some specific third-party dependencies
 
 ### Summary
@@ -14,8 +14,8 @@ For more information, go to http://www.qtrpi.com/faq.
 | ------------------- | ----------------------------- | ------------------------------------ |
 | Raspbian image      |                               | *from [raspberrypi.org](https://www.raspberrypi.org/downloads/raspbian/)*               |
 | Toochain            | *from [the github project](https://github.com/raspberrypi/tools)* | *from [the github project](https://github.com/raspberrypi/tools)*   |
-| Sysroot             | *from [qtrpi.com](http://www.qtrpi.com/download)*              | generated from raspbian image        |
-| Qt binaries         | *from [qtrpi.com](http://www.qtrpi.com/download)*              | compiled                             |
+| Sysroot             | *from qtrpi team*              | generated from raspbian image        |
+| Qt binaries         | *from qtrpi team*              | compiled                             |
 
 ## Tutorial of init-qtrpi-minimal.sh
 
