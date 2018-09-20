@@ -6,3 +6,4 @@ qtquickcontrols
 qtquickcontrols2
 qtserialport
 qtsvg
+qtgraphicaleffects
