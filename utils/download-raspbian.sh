@@ -53,7 +53,8 @@ function download_raspbian() {
     message 'Downloading Raspbian latest image'
     wget --output-document=${RASPBIAN_BASENAME}.zip \
         --content-disposition \
-        https://downloads.raspberrypi.org/raspbian_latest
+        https://downloads.raspberrypi.org/raspbian/images/raspbian-2017-03-03/2017-03-02-raspbian-jessie.zip
+
 
     unzip -p ${RASPBIAN_BASENAME}.zip > ${RASPBIAN_BASENAME}.img
 }
