@@ -3,13 +3,10 @@
 ## Purpose
 Offer an easy-to-use environment to cross-compile Qt application on a Raspberry Pi. This repo contains all the scripts needed to prepare a sysroot, cross-compile Qt and deploy Qt libraries to your Raspberry.
 
-For more information, go to http://www.qtrpi.com/faq.
-
-## How to contact us?
-You can fill a contact form from our [official website](https://www.neuronalmotion.com/contact/) or send us an email at *contact [at] neuronalmotion [dot] com*.
+For more information, go to [the wiki](https://github.com/neuronalmotion/qtrpi/wiki)
 
 ## Difference between init-qtrpi-minimal and init-qtrpi-full
-* **init-qtrpi-minimal**, the typical way: downloads ready-to-use Qt binaries for the Raspberry Pi and a minimal sysroot that we released on the [official website](http://www.qtrpi.com/download)
+* **init-qtrpi-minimal**, the typical way: downloads ready-to-use Qt binaries for the Raspberry Pi and a minimal sysroot that we released on the [download page](https://github.com/neuronalmotion/qtrpi/wiki/Download)
 * **init-qtrpi-full**, the custom way: compiles on your computer the Qt binaries for the Raspberry Pi to let you tweak the configuration, enhance the compilation by adding some missing Qt modules to QtRpi or add some specific third-party dependencies
 
 ### Summary
@@ -17,8 +14,8 @@ You can fill a contact form from our [official website](https://www.neuronalmoti
 | ------------------- | ----------------------------- | ------------------------------------ |
 | Raspbian image      |                               | *from [raspberrypi.org](https://www.raspberrypi.org/downloads/raspbian/)*               |
 | Toochain            | *from [the github project](https://github.com/raspberrypi/tools)* | *from [the github project](https://github.com/raspberrypi/tools)*   |
-| Sysroot             | *from [qtrpi.com](http://www.qtrpi.com/download)*              | generated from raspbian image        |
-| Qt binaries         | *from [qtrpi.com](http://www.qtrpi.com/download)*              | compiled                             |
+| Sysroot             | *from qtrpi team*              | generated from raspbian image        |
+| Qt binaries         | *from qtrpi team*              | compiled                             |
 
 ## Tutorial of init-qtrpi-minimal.sh
 
@@ -29,7 +26,7 @@ This tutorial will help you to:
 
 ### Requirements
 * A 64-bit Linux host computer
-* A Raspberry Pi 3
+* A Raspberry Pi 3 **with Raspbian Jessie** (Raspbian Stretch is currently not supported!)
 
 In this example, you already have an SSH access to your Raspberry Pi 3 at `192.168.1.12` with the user `pi`. The script will use sudo several times to install the packages on the board. You should add your SSH key in your Raspberry Pi. For example with **`ssh-copy-id`**:
 ```bash
@@ -80,3 +77,25 @@ How to build a Raspberry Pi 3 application from your desktop Qt Creator (step by 
 * If you want to add a module, just add the repository name in the file [qt-modules.txt](https://github.com/neuronalmotion/qtrpi/blob/develop/qt-modules.txt)
 * You might have to add some packages in the sysroot, this can be done in [utils/prepare-sysroot-full.sh](https://github.com/neuronalmotion/qtrpi/blob/develop/utils/prepare-sysroot-full.sh)
 * Once you have modified these scripts, you should be able to re-execute [init-qtrpi-full.sh](https://github.com/neuronalmotion/qtrpi/blob/develop/init-qtrpi-full.sh) and see the magic happen.
+
+## Docker images
+
+The images are tagged according to their target configuration.
+
+Currently the following tags are available:
+
+* `rpi3-qt5.6.2`: Crosscompile Qt 5.6.2 for the Raspbarry Pi 3
+
+Choose the image which fits your needs.
+
+### Building a Qt project
+
+To build a Qt project, mount the directory containing the sources and the project file to the `/sources` path inside the container and run it.
+By default the image automatically executes `qmake` and `make` in the current working directory, which is set to `/sources` by default.
+
+#### Example
+
+``` shell
+docker pull arose/qtrpi:rpi3-qt5.6.2
+docker run -v /someqtprojectfolder/:/source arose/qtrpi:rpi3-qt5.6.2
+```

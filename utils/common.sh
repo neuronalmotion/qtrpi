@@ -82,6 +82,10 @@ QTRPI_SYSROOT_URL="$QTRPI_BASE_URL/sysroot/qtrpi-sysroot-minimal-latest.zip"
 QTRPI_MINIMAL_URL="$QTRPI_BASE_URL/qtrpi/$DEVICE_NAME/$QTRPI_ZIP"
 QTRPI_CURL_OPT=''
 
+# evaluate docker usage
+if [[ $QTRPI_DOCKER ]]; then
+    DOCKER_BUILD=$QTRPI_DOCKER
+fi
 
 # Get absolute path of script dir for later execution
 # /!\ has to be executed *before* any "cd" command
