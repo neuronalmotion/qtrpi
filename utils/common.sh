@@ -24,19 +24,20 @@ function device_name() {
         'linux-rasp-pi-g++') NAME='rpi1' ;;
         'linux-rasp-pi2-g++') NAME='rpi2' ;;
         'linux-rpi3-g++') NAME='rpi3' ;;
+        'linux-rasp-pi3-g++') NAME='rpi3' ;;
     esac
     echo $NAME
 }
 
 validate_var_qtrpi_qt_version() {
-    for VERSION in '5.6.2' '5.7.0'; do
+    for VERSION in '5.6.2' '5.7.0' '5.12.9'; do
         if [[ "$QTRPI_QT_VERSION" == "$VERSION" ]]; then
             VALID=true
         fi
     done
 
     if [[ ! $VALID ]]; then
-        exit_error "Invalid QTRPI_QT_VERSION value ($QTRPI_QT_VERSION). Supported values: \n- 5.6.2 \n- 5.7.0"
+        exit_error "Invalid QTRPI_QT_VERSION value ($QTRPI_QT_VERSION). Supported values: \n- 5.6.2 \n- 5.7.0 \n- 5.12.9"
     fi
 }
 

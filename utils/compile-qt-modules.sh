@@ -62,6 +62,7 @@ function build_qtbase() {
         NO_USE_GOLD_LINKER='-no-use-gold-linker'
     fi
 
+    TODO new target device pi4: linux-rasp-pi4-v3d-g++
     ./configure -release -opengl es2 -device $TARGET_DEVICE \
         -device-option CROSS_COMPILE=$CROSS_COMPILE \
         -sysroot $SYSROOT \
@@ -69,8 +70,22 @@ function build_qtbase() {
         -prefix /usr/local/qt5pi \
         -extprefix $OUTPUT_DIR \
         -hostprefix $OUTPUT_HOST_DIR \
+        -accessibility \
         $NO_USE_GOLD_LINKER \
         |& tee $ROOT/logs/$MODULE.log
+
+    # Disabled accessiblity, due to errors
+
+    # Old version:
+    # ./configure -release -opengl es2 -device $TARGET_DEVICE \
+    #     -device-option CROSS_COMPILE=$CROSS_COMPILE \
+    #     -sysroot $SYSROOT \
+    #     -opensource -confirm-license -make libs \
+    #     -prefix /usr/local/qt5pi \
+    #     -extprefix $OUTPUT_DIR \
+    #     -hostprefix $OUTPUT_HOST_DIR \
+    #     $NO_USE_GOLD_LINKER \
+    #     |& tee $ROOT/logs/$MODULE.log
 
     make_cmd $MODULE
     make install
@@ -121,8 +136,8 @@ for MODULE in "${QT_MODULES[@]}" ; do
 
     if [[ "$MODULE" == "qtbase" ]]; then
         build_qtbase
-    else
-        build_module $MODULE
+#    else
+        # build_module $MODULE
     fi
     popd
 done
