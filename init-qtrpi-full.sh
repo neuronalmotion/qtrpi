@@ -40,11 +40,11 @@ check_env_vars
 
 cd utils
 ./init-common.sh
-# ./synchronize-toolchain.sh
+./synchronize-toolchain.sh
 # ./download-raspbian.sh $RASPBIAN_ARG
 # ./prepare-sysroot-full.sh
 # ./prepare-sysroot-minimal.sh
-# ./switch-sysroot.sh full
-# ./synchronize-qt-modules.sh
+./switch-sysroot.sh full
+./synchronize-qt-modules.sh
 ./compile-qt-modules.sh --clean-output --clean-modules-repo
 

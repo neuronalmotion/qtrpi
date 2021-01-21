@@ -70,7 +70,7 @@ function build_qtbase() {
         -prefix /usr/local/qt5pi \
         -extprefix $OUTPUT_DIR \
         -hostprefix $OUTPUT_HOST_DIR \
-        -accessibility \
+        -no-feature-accessibility \
         $NO_USE_GOLD_LINKER \
         |& tee $ROOT/logs/$MODULE.log
 
@@ -136,8 +136,8 @@ for MODULE in "${QT_MODULES[@]}" ; do
 
     if [[ "$MODULE" == "qtbase" ]]; then
         build_qtbase
-#    else
-        # build_module $MODULE
+    else
+        build_module $MODULE
     fi
     popd
 done
