@@ -46,8 +46,8 @@ Open a terminal and follow the steps below:
 ```bash
 git clone https://github.com/neuronalmotion/qtrpi.git
 cd qtrpi
-export QTRPI_QT_VERSION='5.7.0'
-export QTRPI_TARGET_DEVICE='linux-rpi3-g++'
+export QTRPI_QT_VERSION='5.12.9'
+export QTRPI_TARGET_DEVICE='linux-rasp-pi3-g++'
 export QTRPI_TARGET_HOST='pi@192.168.1.12'
 ./init-qtrpi-minimal.sh
 ./deploy-qtrpi.sh --prepare-rpi

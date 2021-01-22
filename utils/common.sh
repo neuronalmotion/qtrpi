@@ -116,12 +116,16 @@ function clean_git_and_compilation() {
 
 function qmake_cmd() {
     LOG_FILE=${1:-'default'}
-    $ROOT/raspi/qt5/bin/qmake -r |& tee $ROOT/logs/$LOG_FILE.log
+    $ROOT/raspi/qt5/bin/qmake |& tee $ROOT/logs/$LOG_FILE.log  
+    
+    # https://stackoverflow.com/questions/47443971/project-error-could-not-find-feature-when-running-qmake-on-any-qt-module
+    # -r - qtdeclarative - Could not find feature qml-network
 }
 
 function make_cmd() {
     LOG_FILE=${1:-'default'}
-    make -j 10 |& tee --append $ROOT/logs/$LOG_FILE.log
+    # TODO: Change back to j10
+    make -j 4 |& tee --append $ROOT/logs/$LOG_FILE.log
 }
 
 function download_sysroot_minimal() {
