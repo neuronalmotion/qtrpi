@@ -110,8 +110,9 @@ function cd_root() {
 function clean_git_and_compilation() {
     git reset --hard HEAD
     git clean -fd
-    make clean -j 10
-    make distclean -j 10
+    # TODO: change back to 10
+    make clean -j 4
+    make distclean -j 4
 }
 
 function qmake_cmd() {
@@ -124,8 +125,8 @@ function qmake_cmd() {
 
 function make_cmd() {
     LOG_FILE=${1:-'default'}
-    # TODO: Change back to j10
-    make -j 4 |& tee --append $ROOT/logs/$LOG_FILE.log
+    # TODO changeback to 10
+    make -j4 |& tee --append $ROOT/logs/$LOG_FILE.log
 }
 
 function download_sysroot_minimal() {
