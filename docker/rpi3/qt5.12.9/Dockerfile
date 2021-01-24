@@ -11,11 +11,11 @@ RUN apt-get update -q && apt-get install -yq --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Clone Qtrpi and additional scripts
-RUN git clone https://github.com:MoJo2600/qtrpi.git -b docker-compatibility
+RUN git clone https://github.com/MoJo2600/qtrpi.git -b 5.12.9
 
 # Setup Qtrpi environment
 ENV QTRPI_QT_VERSION='5.12.9' \
-    QTRPI_TARGET_DEVICE='linux-rasp-rpi3-g++' \
+    QTRPI_TARGET_DEVICE='linux-rasp-pi3-g++' \
     QTRPI_TARGET_HOST='pi@localhost' \
     QTRPI_DOCKER='True'
 

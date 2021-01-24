@@ -52,8 +52,8 @@ message 'Downloading Raspberry Pi toolchain'
 function download_toolchain() {
     # Download and unzip the latest raspbian image (~1.4Go zipped)
     message "Downloading linaro ${LINARO_RELEASE}"
-    wget --content-disposition \
-        https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/${LINARO_RELEASE}.tar.xz
+    curl https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/${LINARO_RELEASE}.tar.xz \
+        -o ${LINARO_RELEASE}.tar.xz
     tar xfv ${LINARO_RELEASE}.tar.xz
 }
 
