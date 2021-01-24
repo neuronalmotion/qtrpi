@@ -45,7 +45,7 @@ validate_var_qtrpi_target_device() {
     NAME=$(device_name $QTRPI_TARGET_DEVICE)
 
     if [[ ! $NAME ]]; then
-        exit_error "Invalid QTRPI_TARGET_DEVICE value ($QTRPI_TARGET_DEVICE). Supported values: \n- linux-rasp-pi-g++ \n- linux-rasp-pi2-g++ \n- linux-rpi3-g++"
+        exit_error "Invalid QTRPI_TARGET_DEVICE value ($QTRPI_TARGET_DEVICE). Supported values: \n- linux-rasp-pi-g++ \n- linux-rasp-pi2-g++ \n- linux-rasp-rpi3-g++"
     fi
 }
 

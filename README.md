@@ -99,3 +99,9 @@ By default the image automatically executes `qmake` and `make` in the current wo
 docker pull arose/qtrpi:rpi3-qt5.6.2
 docker run -v /someqtprojectfolder/:/source arose/qtrpi:rpi3-qt5.6.2
 ```
+
+### Errors during compile
+
+#### Undefined reference error _dl_stack_flags with gcc and pthreads
+
+Run sysroot-relativelinks.py again

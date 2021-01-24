@@ -67,6 +67,7 @@ function build_qtbase() {
         NO_USE_GOLD_LINKER='-no-use-gold-linker'
     fi
 
+
     TODO new target device pi4: linux-rasp-pi4-v3d-g++
     ./configure -release -opengl es2 -device $TARGET_DEVICE \
         -device-option CROSS_COMPILE=$CROSS_COMPILE \
@@ -75,11 +76,25 @@ function build_qtbase() {
         -prefix /usr/local/qt5pi \
         -extprefix $OUTPUT_DIR \
         -hostprefix $OUTPUT_HOST_DIR \
-        -no-feature-accessibility \
         $NO_USE_GOLD_LINKER \
         |& tee $ROOT/logs/$MODULE.log
 
-    # Disabled accessiblity, due to errors
+        # -skip qtwayland -skip qtlocation -skip qtscript \
+        # -no-gbm \
+
+    # from: https://mechatronicsblog.com/cross-compile-and-deploy-qt-5-12-for-raspberry-pi/
+    # ./configure -release -opengl es2 -device linux-rasp-pi-g++ \
+    #     -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf- \
+    #     -sysroot ~/raspi/sysroot \
+    #     -opensource -confirm-license \
+    #     -skip qtwayland -skip qtlocation -skip qtscript \
+    #     -make libs \
+    #     -prefix /usr/local/qt5pi \
+    #     -extprefix ~/raspi/qt5pi \
+    #     -hostprefix ~/raspi/qt5 \
+    #     -no-use-gold-linker \
+    #     -v \
+    #     -no-gbm
 
     # Old version:
     # ./configure -release -opengl es2 -device $TARGET_DEVICE \
