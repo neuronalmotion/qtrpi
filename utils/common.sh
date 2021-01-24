@@ -70,10 +70,11 @@ check_env_vars() {
 
 
 ROOT=${QTRPI_ROOT-/opt/qtrpi}
-TARGET_DEVICE=${QTRPI_TARGET_DEVICE-'linux-rasp-pi2-g++'}
-QT_VERSION=${QTRPI_QT_VERSION-'5.7.0'}
+TARGET_DEVICE=${QTRPI_TARGET_DEVICE-'linux-rasp-pi3-g++'}
+QT_VERSION=${QTRPI_QT_VERSION-'5.12.9'}
 TARGET_HOST=$QTRPI_TARGET_HOST
 RASPBIAN_BASENAME='raspbian_latest'
+LINARO_BASENAME='linaro_latest'
 
 DEVICE_NAME=$(device_name $TARGET_DEVICE)
 
@@ -110,23 +111,22 @@ function cd_root() {
 function clean_git_and_compilation() {
     git reset --hard HEAD
     git clean -fd
-    # TODO: change back to 10
-    make clean -j 4
-    make distclean -j 4
+    make clean -j 10
+    make distclean -j 10
 }
 
 function qmake_cmd() {
     LOG_FILE=${1:-'default'}
     $ROOT/raspi/qt5/bin/qmake |& tee $ROOT/logs/$LOG_FILE.log  
     
+    # Got a lot of errors like `qtdeclarative - Could not find feature qml-network`
+    # Removing `-r` fixed this and modules are still working
     # https://stackoverflow.com/questions/47443971/project-error-could-not-find-feature-when-running-qmake-on-any-qt-module
-    # -r - qtdeclarative - Could not find feature qml-network
 }
 
 function make_cmd() {
     LOG_FILE=${1:-'default'}
-    # TODO changeback to 10
-    make -j4 |& tee --append $ROOT/logs/$LOG_FILE.log
+    make -j10 |& tee --append $ROOT/logs/$LOG_FILE.log
 }
 
 function download_sysroot_minimal() {

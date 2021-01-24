@@ -53,10 +53,10 @@ function download_raspbian() {
     message 'Downloading Raspbian latest image'
     wget --output-document=${RASPBIAN_BASENAME}.zip \
         --content-disposition \
-        https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-01-12/2021-01-11-raspios-buster-armhf-full.zip
+        https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-01-12/2021-01-11-raspios-buster-armhf-lite.zip
 
+        #https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-01-12/2021-01-11-raspios-buster-armhf-full.zip
 #        https://downloads.raspberrypi.org/raspbian/images/raspbian-2017-03-03/2017-03-02-raspbian-jessie.zip
-
 
     unzip -p ${RASPBIAN_BASENAME}.zip > ${RASPBIAN_BASENAME}.img
 }

@@ -7,5 +7,3 @@ qtquickcontrols2
 qtserialport
 qtsvg
 qtgraphicaleffects
-qtcharts
-qtmultimedia

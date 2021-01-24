@@ -52,12 +52,13 @@ message 'Downloading Raspberry Pi toolchain'
 function download_toolchain() {
     # Download and unzip the latest raspbian image (~1.4Go zipped)
     message "Downloading linaro ${LINARO_RELEASE}"
-    curl https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/${LINARO_RELEASE}.tar.xz \
-        -o ${LINARO_RELEASE}.tar.xz
-    tar xfv ${LINARO_RELEASE}.tar.xz
+    wget --output-document=${LINARO_BASENAME}.tar.xz \
+        --content-disposition \
+        https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/${LINARO_RELEASE}.tar.xz
+    mkdir ${LINARO_BASENAME} && tar xfv ${LINARO_BASENAME}.tar.xz -C ${LINARO_BASENAME} --strip-components 1
 }
 
-if [[ -f ${LINARO_RELEASE}.tar.xz ]]; then
+if [[ -d "./${LINARO_BASENAME}" ]]; then
     if [[ ! $NO_DOWNLOAD ]]; then
         while  true; do
             read -p "You already have the current toolchain, do you want to download the lastest version [y/n]? " yn
@@ -67,7 +68,7 @@ if [[ -f ${LINARO_RELEASE}.tar.xz ]]; then
             esac
         done
     else
-        echo "Using cached toolchain file"
+        echo "Using existing toolchain"
     fi
 else
     download_toolchain;

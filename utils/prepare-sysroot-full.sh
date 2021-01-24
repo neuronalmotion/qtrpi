@@ -29,7 +29,7 @@ sudo mount -o bind /sys sysroot-full/sys
 # comment preload conf to avoid the following error during apt-get build-dep command
 # qemu: uncaught target signal 4 (Illegal instruction) - core dumped
 # Illegal instruction
-# It is now working without this 
+# TODO It is now working without this - remove when properly tested
 # sudo sed -i '/./s/^/#/g' sysroot-full/etc/ld.so.preload
 
 # Uncomment deb-src to have access to dev packages
@@ -41,28 +41,6 @@ sudo chroot sysroot-full /bin/bash -c 'apt-get install -y apt-transport-https'
 sudo chroot sysroot-full /bin/bash -c 'apt-get build-dep -y qt4-x11 qtbase-opensource-src'
 sudo chroot sysroot-full /bin/bash -c 'apt-get install -y libudev-dev libinput-dev libts-dev libxcb-xinerama0-dev libxcb-xinerama0 libraspberrypi-dev'
 
-# Requirements for some of the modules
-sudo chroot sysroot-full /bin/bash -c 'apt-get install -y libbluetooth-dev bluez-tools gstreamer1.0-plugins* libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libopenal-data libsndio7.0 libopenal1 libopenal-dev pulseaudio libopenal-dev'
-
-# welle.io requirements
-sudo chroot sysroot-full /bin/bash -c 'apt-get install -y libmp3lame-dev libsoapysdr-dev libmpg123-dev libfaad-dev libfftw3-dev librtlsdr-dev libairspy-dev libusb-1.0-0-dev mesa-common-dev libglu1-mesa-dev libpulse-dev rtl-sdr'
-
-# sudo chroot sysroot-full /bin/bash -c 'apt-get update'
-# sudo chroot sysroot-full /bin/bash -c 'apt-get install -y apt-transport-https'
-# sudo chroot sysroot-full /bin/bash -c 'apt-get build-dep -y qt4-x11 qtbase-opensource-src'
-# sudo chroot sysroot-full /bin/bash -c 'apt-get build-dep -y qt5-default'
-# sudo chroot sysroot-full /bin/bash -c 'apt-get install -y libegl1-mesa libegl1-mesa-dev libgles2-mesa libgles2-mesa-dev libgbm-dev mesa-common-dev'
-# sudo chroot sysroot-full /bin/bash -c 'apt-get install -y wiringpi libnfc-bin libnfc-dev fonts-texgyre libts-dev'
-# sudo chroot sysroot-full /bin/bash -c 'apt-get install -y libudev-dev libinput-dev libts-dev libxcb-xinerama0-dev libxcb-xinerama0 libraspberrypi-dev'
-# sudo chroot sysroot-full /bin/bash -c 'apt-get install -y libbluetooth-dev bluez-tools gstreamer1.0-plugins* libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libopenal-data libsndio7.0 libopenal1 libopenal-dev pulseaudio'
-# sudo chroot sysroot-full /bin/bash -c 'apt-get install -y qtdeclarative5-dev qtdeclarative5-dev-tools libopenal-dev'
-
-#  build-essential
-
-# Accessibilty, needed? - installing libs does not work, only -no-feature-accessibility which is not good
-# mappings.cpp:82:35: error: ‘ATSPI_STATE_READ_ONLY’ was not declared in this scope
-# sudo chroot sysroot-full /bin/bash -c 'apt-get install -y libatspi-dev libatspi2.0-dev'
-
 sudo umount sysroot-full/sys
 sudo umount sysroot-full/dev
 sudo umount sysroot-full/proc
@@ -70,6 +48,5 @@ sudo umount sysroot-full/proc
 GROUP=$(id -g -n)
 sudo chown -R $USER:$GROUP sysroot-full
 
-# TODO this was not called, somehow?
 $UTILS_DIR/sysroot-relativelinks.py sysroot-full
 
