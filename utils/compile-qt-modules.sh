@@ -50,7 +50,7 @@ EOL
 }
 
 function build_qtbase() {
-    export CROSS_COMPILE=$ROOT/raspi/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
+    export CROSS_COMPILE=$ROOT/raspi/${LINARO_BASENAME}/bin/arm-linux-gnueabihf-
     export SYSROOT=$ROOT/raspbian/sysroot
     MODULE='qtbase'
 
