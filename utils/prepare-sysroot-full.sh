@@ -29,7 +29,8 @@ sudo mount -o bind /sys sysroot-full/sys
 # comment preload conf to avoid the following error during apt-get build-dep command
 # qemu: uncaught target signal 4 (Illegal instruction) - core dumped
 # Illegal instruction
-sudo sed -i '/./s/^/#/g' sysroot-full/etc/ld.so.preload
+# TODO It is now working without this - remove when properly tested
+# sudo sed -i '/./s/^/#/g' sysroot-full/etc/ld.so.preload
 
 # Uncomment deb-src to have access to dev packages
 sudo sed -i '/deb-src/s/^#//g' sysroot-full/etc/apt/sources.list
@@ -44,7 +45,8 @@ sudo umount sysroot-full/sys
 sudo umount sysroot-full/dev
 sudo umount sysroot-full/proc
 
-sudo chown -R $USER:$USER sysroot-full
+GROUP=$(id -g -n)
+sudo chown -R $USER:$GROUP sysroot-full
 
 $UTILS_DIR/sysroot-relativelinks.py sysroot-full
 

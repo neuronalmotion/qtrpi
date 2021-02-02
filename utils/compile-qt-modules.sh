@@ -32,6 +32,10 @@ function build_module() {
 function fix_qmake() {
     QMAKE_FILE=mkspecs/devices/$TARGET_DEVICE/qmake.conf
 
+    echo "PATH"
+    echo $PWD
+    echo $QMAKE_FILE
+
     # Add missing INCLUDEPATH in qmake conf
     grep -q 'INCLUDEPATH' $QMAKE_FILE || cat>>$QMAKE_FILE << EOL
     INCLUDEPATH += \$\$[QT_SYSROOT]/opt/vc/include
@@ -46,7 +50,7 @@ EOL
 }
 
 function build_qtbase() {
-    export CROSS_COMPILE=$ROOT/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
+    export CROSS_COMPILE=$ROOT/raspi/${LINARO_BASENAME}/bin/arm-linux-gnueabihf-
     export SYSROOT=$ROOT/raspbian/sysroot
     MODULE='qtbase'
 

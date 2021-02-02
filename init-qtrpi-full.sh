@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# DEBUG
+set -e
+
 source ${0%/*}/utils/common.sh
 
 function usage() {
@@ -47,4 +50,3 @@ cd utils
 ./switch-sysroot.sh full
 ./synchronize-qt-modules.sh
 ./compile-qt-modules.sh --clean-output --clean-modules-repo
-

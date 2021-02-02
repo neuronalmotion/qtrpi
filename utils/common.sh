@@ -24,19 +24,20 @@ function device_name() {
         'linux-rasp-pi-g++') NAME='rpi1' ;;
         'linux-rasp-pi2-g++') NAME='rpi2' ;;
         'linux-rpi3-g++') NAME='rpi3' ;;
+        'linux-rasp-pi3-g++') NAME='rpi3' ;;
     esac
     echo $NAME
 }
 
 validate_var_qtrpi_qt_version() {
-    for VERSION in '5.6.2' '5.7.0'; do
+    for VERSION in '5.6.2' '5.7.0' '5.12.9'; do
         if [[ "$QTRPI_QT_VERSION" == "$VERSION" ]]; then
             VALID=true
         fi
     done
 
     if [[ ! $VALID ]]; then
-        exit_error "Invalid QTRPI_QT_VERSION value ($QTRPI_QT_VERSION). Supported values: \n- 5.6.2 \n- 5.7.0"
+        exit_error "Invalid QTRPI_QT_VERSION value ($QTRPI_QT_VERSION). Supported values: \n- 5.6.2 \n- 5.7.0 \n- 5.12.9"
     fi
 }
 
@@ -44,7 +45,7 @@ validate_var_qtrpi_target_device() {
     NAME=$(device_name $QTRPI_TARGET_DEVICE)
 
     if [[ ! $NAME ]]; then
-        exit_error "Invalid QTRPI_TARGET_DEVICE value ($QTRPI_TARGET_DEVICE). Supported values: \n- linux-rasp-pi-g++ \n- linux-rasp-pi2-g++ \n- linux-rpi3-g++"
+        exit_error "Invalid QTRPI_TARGET_DEVICE value ($QTRPI_TARGET_DEVICE). Supported values: \n- linux-rasp-pi-g++ \n- linux-rasp-pi2-g++ \n- linux-rasp-pi3-g++"
     fi
 }
 
@@ -69,10 +70,11 @@ check_env_vars() {
 
 
 ROOT=${QTRPI_ROOT-/opt/qtrpi}
-TARGET_DEVICE=${QTRPI_TARGET_DEVICE-'linux-rasp-pi2-g++'}
-QT_VERSION=${QTRPI_QT_VERSION-'5.7.0'}
+TARGET_DEVICE=${QTRPI_TARGET_DEVICE-'linux-rasp-pi3-g++'}
+QT_VERSION=${QTRPI_QT_VERSION-'5.12.9'}
 TARGET_HOST=$QTRPI_TARGET_HOST
 RASPBIAN_BASENAME='raspbian_latest'
+LINARO_BASENAME='linaro_latest'
 
 DEVICE_NAME=$(device_name $TARGET_DEVICE)
 
@@ -109,18 +111,22 @@ function cd_root() {
 function clean_git_and_compilation() {
     git reset --hard HEAD
     git clean -fd
-    make clean -j 10
-    make distclean -j 10
+    make clean
+    make distclean
 }
 
 function qmake_cmd() {
     LOG_FILE=${1:-'default'}
-    $ROOT/raspi/qt5/bin/qmake -r |& tee $ROOT/logs/$LOG_FILE.log
+    $ROOT/raspi/qt5/bin/qmake |& tee $ROOT/logs/$LOG_FILE.log  
+    
+    # Got a lot of errors like `qtdeclarative - Could not find feature qml-network`
+    # Removing `-r` fixed this and modules are still working
+    # https://stackoverflow.com/questions/47443971/project-error-could-not-find-feature-when-running-qmake-on-any-qt-module
 }
 
 function make_cmd() {
     LOG_FILE=${1:-'default'}
-    make -j 10 |& tee --append $ROOT/logs/$LOG_FILE.log
+    make |& tee --append $ROOT/logs/$LOG_FILE.log
 }
 
 function download_sysroot_minimal() {

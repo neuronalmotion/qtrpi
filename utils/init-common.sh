@@ -12,15 +12,17 @@ if [[ ! $DOCKER_BUILD ]]; then
     sudo umount $ROOT/raspbian/sysroot-full/proc
     
     sudo mkdir -p $ROOT
-    sudo chown -R $USER:$USER $ROOT
+    GROUP=$(id -g -n)
+    sudo chown -R $USER:$GROUP $ROOT
 else
     # === Docker-Mode ===
     # umount is not allowed in a docker image, besides we use a fresh linux image => skipping sanity checks
     # sudo is also not needed/installed by default => creating directory structure without use of sudo
     mkdir -p $ROOT
-    chown -R $USER:$USER $ROOT
+    GROUP=$(id -g -n)
+    chown -R $USER:$GROUP $ROOT
 fi
 
 cd_root
 
-mkdir raspi raspbian bin logs
+mkdir raspi -p raspbian bin logs

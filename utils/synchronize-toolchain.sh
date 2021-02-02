@@ -6,6 +6,7 @@ function usage() {
 Usage: $0 [options]
 
 -h| --help                      Display help text.
+-n| --no-download               If the toolchain file is present, do not download it again.
 -d| --directory                 Destination directory where the toolchain is downloaded.
 EOF
 }
@@ -15,6 +16,9 @@ while [[ $# -gt 0 ]]; do
     case $KEY in
         -h|--help)
             DISPLAY_HELP=true
+        ;;
+        -n|--no-download)
+            NO_DOWNLOAD=true
         ;;
         -d|--directory)
             DIRECTORY_ARG="$2"
@@ -41,17 +45,32 @@ fi
 
 cd raspi
 
+export LINARO_RELEASE="gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf"
+
 message 'Downloading Raspberry Pi toolchain'
 
-if [[ ! $DOCKER_BUILD ]]; then
-    if [[ ! -d 'tools' ]]; then
-        git clone https://github.com/raspberrypi/tools
-    fi
+function download_toolchain() {
+    # Download and unzip the latest raspbian image (~1.4Go zipped)
+    message "Downloading linaro ${LINARO_RELEASE}"
+    wget --output-document=${LINARO_BASENAME}.tar.xz \
+        --content-disposition \
+        https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/${LINARO_RELEASE}.tar.xz
+    mkdir ${LINARO_BASENAME} && tar xfv ${LINARO_BASENAME}.tar.xz -C ${LINARO_BASENAME} --strip-components 1
+}
 
-    pushd tools
-    git pull origin master
-    popd
+if [[ -d "./${LINARO_BASENAME}" ]]; then
+    if [[ ! $NO_DOWNLOAD ]]; then
+        while  true; do
+            read -p "You already have the current toolchain, do you want to download the lastest version [y/n]? " yn
+            case $yn in
+                [Yy]* ) download_toolchain; break;;
+                [Nn]* ) break;;
+            esac
+        done
+    else
+        echo "Using existing toolchain"
+    fi
 else
-    # create shallow copy, which is a lot faster
-    git clone --depth=1 -b master https://github.com/raspberrypi/tools
+    download_toolchain;
 fi
+
